@@ -1,11 +1,12 @@
 #pragma once
 
+#include "Core.h"
 #include "graphics/Shader.h"
 #include "math/Mat4.h"
 
 namespace Kinemo {
 
-	class Shader
+	class KINEMO_API Shader
 	{
 	private:
 		unsigned int m_ShaderHandle;

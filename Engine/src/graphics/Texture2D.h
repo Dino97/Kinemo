@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Core.h"
+
 namespace Kinemo
 {
 	enum Filter
@@ -8,7 +10,7 @@ namespace Kinemo
 		LINEAR
 	};
 
-	class Texture2D
+	class KINEMO_API Texture2D
 	{
 	protected:
 		int m_Width, m_Height, m_Channels;

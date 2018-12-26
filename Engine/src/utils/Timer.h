@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Core.h"
+
 struct Members;
 
-class Timer
+class KINEMO_API Timer
 {
 private:
 	unsigned char m_Reserved[32];

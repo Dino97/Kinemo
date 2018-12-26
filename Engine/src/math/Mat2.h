@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Core.h"
+
 namespace Kinemo { namespace Math {
 	
-	struct Mat2
+	struct KINEMO_API Mat2
 	{
 		float elements[4];
 

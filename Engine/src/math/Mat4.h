@@ -3,18 +3,19 @@
 #define _USE_MATH_DEFINES
 
 #include <cmath>
+
 #include "Vec3.h"
+#include "Core.h"
 
 namespace Kinemo { namespace Math {
 
-	struct Mat4
+	struct KINEMO_API Mat4
 	{
 		float elements[16];
 
 		Mat4();
 		Mat4(float diagonal);
 
-		// Create matrix with ones on diagonal and zeroes everywhere else.
 		static Mat4 Identity();
 
 		static Mat4 Orthographic(float left, float right, float bottom, float top, float near, float far);

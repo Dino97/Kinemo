@@ -28,6 +28,8 @@ public:
 
 		sh->Bind();
 		sh->SetUniformMat4("pr_matrix", projection);
+
+		Kinemo::Log::Init();
 	}
 
 	void OnUpdate() override

@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Core.h"
 #include "math/Vec2.h"
 
 namespace Kinemo { namespace GUI {
 
-	class Widget
+	class KINEMO_API Widget
 	{
 	private:
 		Math::Vec2 m_Position;

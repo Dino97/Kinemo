@@ -18,7 +18,6 @@ namespace Kinemo { namespace Math {
 	{
 		Vec2 result;
 
-		// clamp alpha
 		if (alpha > 1)
 			alpha = 1;
 		else if (alpha < 0)

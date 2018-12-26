@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Core.h"
 #include "Window.h"
 #include "utils/Timer.h"
 #include "entity/Scene.h"
 
-class Application
+class KINEMO_API Application
 {
 private:
 	Window* m_Window;

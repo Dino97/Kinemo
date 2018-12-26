@@ -1,12 +1,14 @@
 #pragma once
 
 #include <KinemoTypes.h>
+
+#include "Core.h"
 #include "Texture2D.h"
 #include "Shader.h"
 
 namespace Kinemo
 {
-	class Sprite
+	class KINEMO_API Sprite
 	{
 	private:
 		uint m_VAO, m_VBO, m_IBO;

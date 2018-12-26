@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Core.h"
 #include "Widget.h"
 #include "graphics/Texture2D.h"
 #include "graphics/Sprite.h"
@@ -11,7 +12,7 @@ namespace Kinemo
 
 namespace Kinemo { namespace GUI {
 
-	class Texture : public Widget
+	class KINEMO_API Texture : public Widget
 	{
 	private:
 		Sprite m_Sprite;

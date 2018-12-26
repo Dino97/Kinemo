@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Core.h"
 #include "graphics/Texture2D.h"
 
 namespace Kinemo {
-	class GLTexture2D : public Texture2D
+	class KINEMO_API GLTexture2D : public Texture2D
 	{
 	private:
 		unsigned int m_TextureHandle;

@@ -3,9 +3,11 @@
 #include <ostream>
 //#include <cmath>
 
+#include "Core.h"
+
 namespace Kinemo { namespace Math {
 
-	struct Vec3
+	struct KINEMO_API Vec3
 	{
 		float x, y, z;
 
