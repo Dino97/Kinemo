@@ -42,8 +42,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\Game\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)bin\Game\$(Platform)\$(Configuration)\intermediates\</IntDir>
+    <OutDir>$(SolutionDir)bin\Game\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\Game\$(Configuration)\intermediates\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\Game\$(Platform)\$(Configuration)\</OutDir>

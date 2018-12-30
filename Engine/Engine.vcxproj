@@ -91,6 +91,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\events\EventManager.h" />
+    <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\Layer.h" />
+    <ClInclude Include="src\LayerStack.h" />
     <ClInclude Include="src\utils\Log.h" />
     <ClInclude Include="src\app\Application.h" />
     <ClInclude Include="src\app\InputManager.h" />
@@ -131,6 +135,8 @@
     <ClInclude Include="src\utils\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Layer.cpp" />
+    <ClCompile Include="src\LayerStack.cpp" />
     <ClCompile Include="src\utils\Log.cpp" />
     <ClCompile Include="src\app\Application.cpp" />
     <ClCompile Include="src\entity\Scene.cpp" />

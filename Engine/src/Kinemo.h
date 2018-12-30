@@ -15,3 +15,6 @@
 #include "math/Math.h"
 
 #include "utils/Log.h"
+
+#include "GameObject.h"
+#include "Layer.h"

@@ -1,10 +1,20 @@
-#include "Kinemo.h"
 #include <iostream>
+
+#include "Kinemo.h"
+#include "Player.h"
 
 constexpr unsigned int SCREEN_WIDTH = 1280;
 constexpr unsigned int SCREEN_HEIGHT = 720;
 
-class Game : public Application
+class ExampleLayer : public Kinemo::Layer
+{
+	void OnUpdate() override
+	{
+
+	}
+};
+
+class Game : public Kinemo::Application
 {
 	using GUITexture = Kinemo::GUI::Texture;
 	using Shader = Kinemo::Shader;
@@ -14,6 +24,7 @@ private:
 	GUITexture* btn;
 	Shader* sh;
 	Mat4 projection;
+	Player player;
 	
 public:
 	Game() : Application("Game", SCREEN_WIDTH, SCREEN_HEIGHT, false) {}
@@ -30,11 +41,18 @@ public:
 		sh->SetUniformMat4("pr_matrix", projection);
 
 		Kinemo::Log::Init();
+
+		RegisterGameObject(&player);
+
+		PushLayer(new ExampleLayer());
 	}
 
 	void OnUpdate() override
 	{
 		btn->Draw(*sh);
+
+		if (IsKeyDown(65))
+			std::cout << "Button pressed!" << std::endl;
 	}
 };
 

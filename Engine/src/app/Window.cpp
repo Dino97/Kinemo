@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream> // for dev testing
 
 Window::Window(const char* title, unsigned int width, unsigned int height, bool fullscreen)
 {
@@ -14,7 +15,7 @@ Window::Window(const char* title, unsigned int width, unsigned int height, bool 
 	m_Window = glfwCreateWindow(width, height, title, fullscreen ? glfwGetPrimaryMonitor() : NULL, NULL);
 	glfwMakeContextCurrent(m_Window);
 
-	SetVSync(false);
+	SetVSync(true);
 
 	glfwSetWindowUserPointer(m_Window, this);
 
@@ -33,6 +34,11 @@ Window::Window(const char* title, unsigned int width, unsigned int height, bool 
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	for (int i = 0; i < MAX_KEYS; i++)
+	{
+		m_Keys[i] = false;
+	}
 }
 
 Window::~Window()
@@ -67,7 +73,8 @@ void Window::SetVSync(bool vsync)
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	Window* win = (Window*)glfwGetWindowUserPointer(window);
-	
+
+	win->m_Keys[key] = action == GLFW_RELEASE ? 0 : 1;
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
