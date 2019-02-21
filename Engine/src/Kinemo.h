@@ -1,6 +1,7 @@
 #pragma once
 
 #include "app/Application.h"
+#include "app/Input.h"
 
 #include "events/Event.h"
 #include "events/EventHandler.h"
@@ -16,5 +17,5 @@
 
 #include "utils/Log.h"
 
-#include "GameObject.h"
+#include "gameobject/GameObject.h"
 #include "Layer.h"

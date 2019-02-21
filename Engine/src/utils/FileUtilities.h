@@ -12,7 +12,7 @@ public:
 
 		if (file == NULL)
 		{
-			std::cout << "FileUtilities_ReadFileError: File cannot be found." << std::endl;
+			std::cout << "FileUtilities_ReadFileError: File cannot be found. ( " << path << ")" << std::endl;
 			return NULL;
 		}
 

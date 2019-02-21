@@ -57,6 +57,8 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLAD\include\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\SOIL\include\;$(SolutionDir)Engine\src\;$(SolutionDir)Dependencies\FreeType\include\;$(SolutionDir)Engine\Dependencies\spdlog\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>KINEMO_DEBUG;KINEMO_WIN_64;KINEMO_CORE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>glfw3.lib;freetype.lib</AdditionalDependencies>
@@ -78,6 +80,8 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLAD\include\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\SOIL\include\;$(SolutionDir)Engine\src\;$(SolutionDir)Dependencies\FreeType\include\;$(SolutionDir)Engine\Dependencies\spdlog\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>KINEMO_RELEASE;KINEMO_WIN_64;KINEMO_CORE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -91,20 +95,22 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\app\Input.h" />
     <ClInclude Include="src\events\EventManager.h" />
-    <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\gameobject\GameObject.h" />
+    <ClInclude Include="src\graphics\Color.h" />
     <ClInclude Include="src\Layer.h" />
     <ClInclude Include="src\LayerStack.h" />
+    <ClInclude Include="src\platform\windows\WindowsInput.h" />
+    <ClInclude Include="src\platform\windows\WindowsWindow.h" />
     <ClInclude Include="src\utils\Log.h" />
     <ClInclude Include="src\app\Application.h" />
     <ClInclude Include="src\app\InputManager.h" />
     <ClInclude Include="src\Core.h" />
-    <ClInclude Include="src\entity\components\SpriteComponent.h" />
-    <ClInclude Include="src\entity\components\TransformComponent.h" />
-    <ClInclude Include="src\entity\EntityManager.h" />
-    <ClInclude Include="src\entity\Scene.h" />
+    <ClInclude Include="src\gameobject\components\SpriteComponent.h" />
+    <ClInclude Include="src\gameobject\components\TransformComponent.h" />
     <ClInclude Include="src\app\Window.h" />
-    <ClInclude Include="src\entity\components\Component.h" />
+    <ClInclude Include="src\gameobject\components\Component.h" />
     <ClInclude Include="src\events\InputEvents.h" />
     <ClInclude Include="src\events\Event.h" />
     <ClInclude Include="src\events\EventHandler.h" />
@@ -137,10 +143,10 @@
   <ItemGroup>
     <ClCompile Include="src\Layer.cpp" />
     <ClCompile Include="src\LayerStack.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsInput.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
     <ClCompile Include="src\utils\Log.cpp" />
     <ClCompile Include="src\app\Application.cpp" />
-    <ClCompile Include="src\entity\Scene.cpp" />
-    <ClCompile Include="src\app\Window.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\Grid.cpp" />
     <ClCompile Include="src\graphics\gui\Texture.cpp" />

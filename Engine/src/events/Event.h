@@ -31,12 +31,12 @@ namespace Kinemo { namespace Events {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class Event
+	class KINEMO_API Event
 	{
 	private:
+	public:
 		bool m_Handled = false;
 
-	public:
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetEventName() const = 0;
 		virtual int GetCategoryFlags() const = 0;

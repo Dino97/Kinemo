@@ -1,43 +1,60 @@
 #pragma once
 
 #include "Core.h"
+#include "events/Event.h"
+#include "events/InputEvents.h"
+#include <string>
+#include <functional>
 
-struct GLFWwindow;
-
-#define MAX_KEYS 1024
-
-class Window
+namespace Kinemo
 {
-private:
-	GLFWwindow* m_Window;
-	double m_CursorX, m_CursorY;
-
-	bool m_Keys[MAX_KEYS];
-
-public:
-	Window(const char* title, unsigned int width, unsigned int height, bool fullscreen);
-	~Window();
-
-	bool WindowShouldRun() const;
-
-	void Clear() const;
-	void SwapBuffers() const;
-
-	void SetVSync(bool vsync);
-
-	GLFWwindow* GetWindow() const { return m_Window; }
-
-	friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-	friend void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
-	friend void mouse_position_callback(GLFWwindow* window, double x, double y);
-
-	inline bool IsKeyDown(int keycode) const { return m_Keys[keycode]; }
-
-	// come up with better name
-	enum class WindowType
+	enum class WindowMode
 	{
 		Windowed,
 		Fullscreen,
 		Borderless
 	};
-}; // class Window
+
+	struct WindowProperties
+	{
+		std::string Title;
+		unsigned int Width;
+		unsigned int Height;
+		bool vSync;
+		WindowMode Mode;
+
+		WindowProperties(const std::string& title = "Kinemo Engine", unsigned int width = 1280, unsigned int height = 720) :
+			Title(title),
+			Width(width),
+			Height(height),
+			vSync(true),
+			Mode(WindowMode::Windowed)
+		{}
+	};
+
+	class KINEMO_API Window
+	{
+	protected:
+		WindowProperties m_WindowProperties;
+		double m_CursorX, m_CursorY;
+
+	public:
+		using EventCallbackFn = std::function<void(Events::Event&)>;
+
+		virtual ~Window() {}
+
+		virtual void Clear() const = 0;
+		virtual void Update() const = 0;
+
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
+		virtual void SetVSync(bool vsync) = 0;
+		virtual bool IsClosing() const = 0;
+
+		virtual void SetTitle(const std::string& title) = 0;
+
+		virtual void* GetNativeWindow() const = 0;
+
+		static Window* Create(const WindowProperties& properties = WindowProperties());
+
+	}; // class Window
+} // namespace Kinemo

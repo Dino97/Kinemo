@@ -5,6 +5,7 @@
 #include "math/Vec2.h"
 #include "graphics/Texture2D.h"
 #include "graphics/Shader.h"
+#include "utils/Log.h"
 
 #include <iostream>
 #include <map>
@@ -16,6 +17,8 @@
 
 namespace Kinemo
 {
+#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+
 	struct Character
 	{
 		GLuint TextureID;
@@ -29,32 +32,44 @@ namespace Kinemo
 
 	void RenderText(Kinemo::Shader& shader, std::string text, GLfloat x, GLfloat y, GLfloat scale, Kinemo::Math::Vec3 color);
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application(const char* title, unsigned int width, unsigned int height, bool fullscreen)
 	{
-		m_Window = new Window(title, width, height, fullscreen);
-		m_Width = width;
-		m_Height = height;
+		s_Instance = this;
+
+		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 
-	Application::~Application()
+	Application::~Application() 
 	{
-		delete m_Window;
+	}
+
+	void Application::OnEvent(Events::Event& event)
+	{
+		Events::EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<Events::KeyPressedEvent>(BIND_EVENT_FN(InputCallback));
+
+		KM_CORE_INFO("{0}", event.ToString());
+	}
+
+	bool Application::InputCallback(Events::Event& event)
+	{
+		return true;
 	}
 
 	void Application::OnInit()
 	{
-		std::cout << glGetString(GL_RENDERER) << " " << glGetString(GL_VERSION) << std::endl;
+		Log::Init(); // TO-DO: init on start of the program
+		KM_CORE_INFO("Kinemo Engine initialised!");
+		KM_CORE_INFO("Graphics: {0}", glGetString(GL_RENDERER));
+		KM_CORE_INFO("Version: {0}", glGetString(GL_VERSION));
 	}
 
-	void Application::OnUpdate()
-	{
-		//m_CurrentScene.Update();
-	}
+	void Application::OnUpdate() {}
 
-	void Application::OnRender()
-	{
-
-	}
+	void Application::OnRender() {}
 
 	void Application::PushLayer(Layer* layer)
 	{
@@ -150,7 +165,7 @@ namespace Kinemo
 		*/
 
 
-		while (m_Window->WindowShouldRun())
+		while (!m_Window->IsClosing())
 		{
 			m_Window->Clear();
 
@@ -163,14 +178,14 @@ namespace Kinemo
 				layer->OnUpdate();
 
 			// renderer.Begin() for batch render
-			OnRender(); // only submit data here
+			OnRender(); // submit data only in here
 			// renderer.End()
 
 			// renderer.Flush()
 
 			//RenderText(sh, "FPS: 3642", 25.0f, 25.0f, 0.5f, Vec3(0.5f, 0.8f, 0.2f));
 
-			m_Window->SwapBuffers();
+			m_Window->Update();
 
 			m_FPS++;
 			if (time.Elapsed() - timer > 1.0f)
