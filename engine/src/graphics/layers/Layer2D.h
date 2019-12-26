@@ -6,20 +6,17 @@
 #include <vector>
 #include <memory>
 
-namespace Kinemo
-{
+namespace Kinemo { namespace Graphics {
+
 	class Layer2D : public Layer
 	{
 	public:
-		Layer2D() {}
+		virtual void OnUpdate(float deltaTime) override;
 
-		void Add(Sprite* sprite) 
-		{
-			m_Sprites.push_back(sprite);
-		}
+		void Add(Sprite* sprite);
 
 	private:
+		Renderer2D renderer;
 		std::vector<Sprite*> m_Sprites;
-		
 	};
-}
+}}

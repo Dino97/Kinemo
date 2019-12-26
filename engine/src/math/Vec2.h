@@ -3,8 +3,6 @@
 #include <ostream>
 #include <cmath>
 
-#include "Core.h"
-
 namespace Kinemo { namespace Math {
 
 	struct Vec2

@@ -2,8 +2,6 @@
 
 #include <ostream>
 
-#include "Core.h"
-
 namespace Kinemo { namespace Math {
 
 	struct Vec3

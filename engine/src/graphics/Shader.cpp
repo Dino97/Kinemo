@@ -16,7 +16,7 @@ namespace Kinemo
 		const char* fragmentShaderSource = fragSrcString.c_str();
 
 		// VERTEX SHADER
-		unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);		// Fix type
+		unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
 		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 		glCompileShader(vertexShader);
@@ -73,13 +73,13 @@ namespace Kinemo
 		glUseProgram(0);
 	}
 
-	void Shader::SetUniformMat4(const char* uniformName, Kinemo::Math::Mat4 mat4)
-	{
-		glUniformMatrix4fv(glGetUniformLocation(m_ShaderHandle, uniformName), 1, GL_FALSE, mat4.elements);
-	}
-
-	void Shader::SetUniform3f(const char* uniformName, Kinemo::Math::Vec3 value)
+	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Vec3 value)
 	{
 		glUniform3f(glGetUniformLocation(m_ShaderHandle, uniformName), value.x, value.y, value.z);
+	}
+
+	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Mat4 mat4)
+	{
+		glUniformMatrix4fv(glGetUniformLocation(m_ShaderHandle, uniformName), 1, GL_FALSE, mat4.elements);
 	}
 }

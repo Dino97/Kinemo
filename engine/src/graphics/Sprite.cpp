@@ -63,11 +63,11 @@ namespace Kinemo
 	}
 #else
 	Sprite::Sprite(float x, float y, float w, float h)
-	{
-		m_Position.x = x;
-		m_Position.y = y;
-		m_Size.x = w;
-		m_Size.y = h;
-	}
+		: m_Position(x, y), m_Size(w, h)
+	{}
+
+	Sprite::Sprite(const Math::Vec2& position, const Math::Vec2& size)
+		: m_Position(position), m_Size(size)
+	{}
 #endif
 }

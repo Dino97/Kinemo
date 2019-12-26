@@ -3,7 +3,6 @@
 #include <list>
 #include <memory>
 
-#include "Core.h"
 #include "Window.h"
 #include "utils/Timer.h"
 #include "gameobject/GameObject.h"

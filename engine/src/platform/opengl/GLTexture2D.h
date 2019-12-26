@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Core.h"
 #include "graphics/Texture2D.h"
 
 namespace Kinemo {

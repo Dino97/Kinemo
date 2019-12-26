@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Core.h"
-
 namespace Kinemo { namespace Math {
 	
 	struct Mat2

@@ -5,7 +5,6 @@
 #include <cmath>
 
 #include "Vec3.h"
-#include "Core.h"
 
 namespace Kinemo { namespace Math {
 

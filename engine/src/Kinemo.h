@@ -18,6 +18,8 @@
 
 #include "math/Math.h"
 
+#include "system/VirtualFileSystem.h"
+
 #include "utils/Log.h"
 
 #include "gameobject/GameObject.h"

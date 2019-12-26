@@ -106,7 +106,7 @@ namespace Kinemo
 			if (time.Elapsed() - timer > 1.0f)
 			{
 				timer += 1.0f;
-				std::cout << 1 / deltaTime << " fps" << std::endl;
+				std::cout << (int)(1 / deltaTime) << " fps" << std::endl;
 			}
 
 		}

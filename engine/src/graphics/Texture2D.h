@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Core.h"
-
 namespace Kinemo
 {
 	enum Filter
@@ -12,9 +10,6 @@ namespace Kinemo
 
 	class Texture2D
 	{
-	protected:
-		int m_Width, m_Height, m_Channels;
-
 	public:
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
@@ -22,6 +17,12 @@ namespace Kinemo
 		void SetMinFilter(Filter minFilter) const;
 		void SetMagFilter(Filter magFilter) const;
 
+		inline int GetWidth() const { return m_Width; }
+		inline int GetHeight() const { return m_Height; }
+
 		static Texture2D* CreateFromFile(const char* path);
+		
+	protected:
+		int m_Width, m_Height, m_Channels;
 	};
 }

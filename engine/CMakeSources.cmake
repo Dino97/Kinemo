@@ -4,9 +4,7 @@ set(KINEMO_APP_SRC
 
 set(KINEMO_GRAPHICS_SRC
     "src/graphics/Grid.cpp"
-    "src/graphics/Renderable2D.cpp"
     "src/graphics/Shader.cpp"
-    "src/graphics/SimpleRenderer2D.cpp"
     "src/graphics/Sprite.cpp"
     "src/graphics/Texture2D.cpp"
     "src/graphics/Renderer2D.cpp"
@@ -14,6 +12,7 @@ set(KINEMO_GRAPHICS_SRC
     "src/graphics/gui/Texture.cpp"
     
     "src/graphics/layers/Layer.cpp"
+    "src/graphics/layers/Layer2D.cpp"
     "src/graphics/layers/LayerStack.cpp"
 )
 
@@ -28,6 +27,10 @@ set(KINEMO_OPENGL_SRC
     "src/platform/opengl/GLTexture2D.cpp"
     "src/platform/windows/WindowsInput.cpp"
     "src/platform/windows/WindowsWindow.cpp"
+)
+
+set(KINEMO_SYSTEM_SRC
+    "src/system/VirtualFileSystem.cpp"
 )
 
 set(KINEMO_UTILITIES_SRC
@@ -48,6 +51,7 @@ set(KINEMO_SRC
     ${KINEMO_GRAPHICS_SRC}
     ${KINEMO_MATH_SRC}
     ${KINEMO_OPENGL_SRC}
+    ${KINEMO_SYSTEM_SRC}
     ${KINEMO_UTILITIES_SRC}
     ${KINEMO_NOFILTER_SRC}
     ${KINEMO_DEPENDENCIES_SRC}

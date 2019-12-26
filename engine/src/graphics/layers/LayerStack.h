@@ -2,7 +2,6 @@
 
 #include <vector>
 
-#include "Core.h"
 #include "Layer.h"
 
 namespace Kinemo

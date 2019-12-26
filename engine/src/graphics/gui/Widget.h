@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Core.h"
 #include "math/Vec2.h"
 
 namespace Kinemo { namespace GUI {

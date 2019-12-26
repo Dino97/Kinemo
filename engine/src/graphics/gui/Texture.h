@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Core.h"
 #include "Widget.h"
 #include "graphics/Texture2D.h"
 #include "graphics/Sprite.h"
