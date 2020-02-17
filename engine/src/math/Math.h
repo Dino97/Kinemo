@@ -12,4 +12,7 @@ namespace Kinemo { namespace Math {
 	{
 		return std::max(min, std::min(value, max));
 	}
+
+	constexpr double DegToRad = M_PI / 180.0;
+	constexpr double RadToDeg = 180.0 / M_PI;
 }}

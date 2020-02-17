@@ -13,6 +13,16 @@ namespace Kinemo { namespace Math {
 		this->x = x;
 		this->y = y;
 	}
+	
+	float Vec2::Magnitude() const
+	{
+		return sqrt(SqrMagnitude());
+	}
+
+	float Vec2::SqrMagnitude() const
+	{
+		return x * x + y * y;
+	}
 
 	Vec2 Vec2::Lerp(const Vec2& vec1, const Vec2& vec2, float alpha)
 	{
@@ -32,8 +42,7 @@ namespace Kinemo { namespace Math {
 	float Vec2::Distance(const Vec2& vec1, const Vec2& vec2)
 	{
 		Vec2 res = vec2 - vec1;
-
-		return sqrt(res.x * res.x + res.y * res.y);
+		return res.Magnitude();
 	}
 
 	const Vec2& Vec2::Add(const Vec2& other)
@@ -112,12 +121,12 @@ namespace Kinemo { namespace Math {
 		return *this;
 	}
 
-	bool Vec2::operator==(const Vec2& other)
+	bool Vec2::operator==(const Vec2& other) const
 	{
 		return x == other.x && y == other.y;
 	}
 
-	bool Vec2::operator!=(const Vec2& other)
+	bool Vec2::operator!=(const Vec2& other) const
 	{
 		return x != other.x && y != other.y;
 	}

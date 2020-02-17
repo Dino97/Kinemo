@@ -35,6 +35,8 @@ public:
 		PushLayer(new Sandbox2D());
 		
 		KM_INFO("Game initialised!");
+
+		KM_INFO("360 degrees = {0} rads", 360.0 * Math::DegToRad);
 	}
 
 	void OnUpdate(float deltaTime) override

@@ -1,5 +1,8 @@
 #include "Mat4.h"
 
+#define _USE_MATH_DEFINES
+
+#include <cmath>
 #include <cstring>
 
 namespace Kinemo { namespace Math {
@@ -106,6 +109,11 @@ namespace Kinemo { namespace Math {
 		result.elements[10] = scale.z;
 
 		return result;
+	}
+
+	const Mat4& Mat4::operator*(const Mat4& other)
+	{
+		return this->Multiply(other);
 	}
 
 	Mat4& Mat4::Multiply(const Mat4& other)

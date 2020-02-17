@@ -12,8 +12,10 @@ namespace Kinemo { namespace Math {
 		Vec2();
 		Vec2(const float& x, const float& y);
 
-		//float Magnitude() const;
-		//Vec2 Normalized() const;
+		float Magnitude() const;
+		float SqrMagnitude() const;
+		
+		Vec2 Normalized() const;
 
 		static Vec2 Lerp(const Vec2& vec1, const Vec2& vec2, float alpha);
 		static float Distance(const Vec2& vec1, const Vec2& vec2);
@@ -33,8 +35,8 @@ namespace Kinemo { namespace Math {
 		Vec2& operator*=(const Vec2& other);
 		Vec2& operator/=(const Vec2& other);
 
-		bool operator==(const Vec2& other);
-		bool operator!=(const Vec2& other);
+		bool operator==(const Vec2& other) const;
+		bool operator!=(const Vec2& other) const;
 
 		friend std::ostream& operator<<(std::ostream& stream, const Vec2& vector);
 	};

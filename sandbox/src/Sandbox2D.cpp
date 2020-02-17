@@ -16,14 +16,10 @@ void Sandbox2D::OnAttach()
 	sp1 = new Sprite(10, 10, 64, 64);
 	Add(sp1);
 
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < 16; i++)
 	{
-		for(int j = 0; j < 4; j++)
-		{
-			int id = i * 4 + j;
-			tiles[id] = new Sprite(300 + j * 64, 300 + i * 64, 64, 64);
-			Add(tiles[id]);
-		}
+		tiles[i] = new Sprite(64 * i, 0, 64, 64);
+		Add(tiles[i]);
 	}
 
 	shader = new Shader("resources/shaders/SpriteShader.vert", "resources/shaders/SpriteShader.frag");
@@ -32,7 +28,7 @@ void Sandbox2D::OnAttach()
 	shader->Bind();
 	shader->SetUniform("pr_matrix", projection);
 
-	texture = Texture2D::CreateFromFile("resources/textures/Spaceship.png");
+	texture = Texture2D::CreateFromFile("resources/textures/Dirt01.png");
 }
 
 void Sandbox2D::OnUpdate(float deltaTime)

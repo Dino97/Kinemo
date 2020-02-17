@@ -1,9 +1,5 @@
 #pragma once
 
-#define _USE_MATH_DEFINES
-
-#include <cmath>
-
 #include "Vec3.h"
 
 namespace Kinemo { namespace Math {
@@ -24,7 +20,8 @@ namespace Kinemo { namespace Math {
 		static Mat4 Rotate(float angle, const Vec3& axis);
 		static Mat4 Scale(const Vec3& scale);
 
+		const Mat4& operator*(const Mat4& other);
+
 		Mat4& Multiply(const Mat4& other);
 	};
-
 }}
