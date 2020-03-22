@@ -1,34 +1,41 @@
 #pragma once
 
 #include "math/Vec2.h"
+#include "math/Vec3.h"
+#include "math/Vec4.h"
+#include "platform/opengl/GLTexture2D.h"
 
 namespace Kinemo 
-{ 
-	class Sprite;
+{
+	struct Vertex
+	{
+		Math::Vec3 position;
+		Math::Vec2 texCoords;
+		Math::Vec4 color;
+		float textureId;
+	};
 
-	namespace Graphics {
-
-		struct VertexData
-		{
-			Math::Vec2 position;
-			Math::Vec2 uv;
-		};
-
-		class Renderer2D
-		{
+	class Renderer2D
+	{
 		public:
-			Renderer2D();
-			~Renderer2D();
 
-			void Begin();
-			void Submit(const Sprite& sprite);
-			void End();
-			void Flush();
+			static void Init();
+			static void Shutdown();
 
-		private:
-			VertexData* m_Buffer;
-			unsigned int m_VAO, m_VBO, m_IBO;
-			unsigned int submitedSpritesCount;
-		};
-	}
+			static void Begin();
+			static void Flush();
+			static void End();
+			
+			static void DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const Math::Vec4& color);
+			static void DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const GLTexture2D& texture);
+
+			struct Stats
+			{
+				unsigned int quads;
+				unsigned int drawCalls;
+			};
+
+			static const Stats& GetStats();
+			static void ResetStats();
+	};
 }

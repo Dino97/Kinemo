@@ -16,6 +16,9 @@
 #include "graphics/layers/Layer2D.h"
 #include "graphics/Renderer2D.h"
 
+#include "Camera.h"
+#include "OrthographicCameraController.h"
+
 #include "math/Math.h"
 
 #include "system/VirtualFileSystem.h"

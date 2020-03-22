@@ -40,6 +40,8 @@ set(KINEMO_UTILITIES_SRC
 )
 
 set(KINEMO_NOFILTER_SRC
+    "src/Camera.cpp"
+    "src/OrthographicCameraController.cpp"
 )
 
 set(KINEMO_DEPENDENCIES_SRC

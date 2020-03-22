@@ -32,6 +32,8 @@ namespace Kinemo { namespace Math {
 		friend Vec3 operator*(Vec3 left, const Vec3& right);
 		friend Vec3 operator/(Vec3 left, const Vec3& right);
 
+		Vec3 operator-() const;
+
 		Vec3& operator+=(const Vec3& other);
 		Vec3& operator-=(const Vec3& other);
 		Vec3& operator*=(const Vec3& other);

@@ -7,6 +7,8 @@
 #include "graphics/Shader.h"
 #include "utils/Log.h"
 
+#include "graphics/Renderer2D.h"
+
 #include <iostream>
 #include <map>
 #include <glad/glad.h>
@@ -107,8 +109,8 @@ namespace Kinemo
 			{
 				timer += 1.0f;
 				std::cout << (int)(1 / deltaTime) << " fps" << std::endl;
+				Log::GetCoreLogger()->info("Quads: {0}, draw calls: {1}", Renderer2D::GetStats().quads, Renderer2D::GetStats().drawCalls);
 			}
-
 		}
 	}
 }

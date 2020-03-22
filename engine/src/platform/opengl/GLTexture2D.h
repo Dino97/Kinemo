@@ -13,5 +13,7 @@ namespace Kinemo {
 
 		void Bind() const override;
 		void Unbind() const override;
+
+		inline unsigned int GetHandle() const { return m_TextureHandle; }
 	};
 }

@@ -13,11 +13,9 @@ public:
 	virtual void OnUpdate(float deltaTime) override;
 	
 private:
-	Sprite *sp1;
-	Shader *shader;
-	Texture2D *texture;
-	Sprite *tiles[16];
+	OrthographicCameraController cameraController;
 
-	float pos = 0.0f;
-	float shipSpeed = 500.0f;
+	Shader *shader;
+	Texture2D *texture1, *texture2;
+	Sprite *background;
 };

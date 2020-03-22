@@ -73,6 +73,16 @@ namespace Kinemo
 		glUseProgram(0);
 	}
 
+	void Shader::SetUniform(const char* uniformName, int value)
+	{
+		glUniform1i(glGetUniformLocation(m_ShaderHandle, uniformName), value);
+	}
+
+	void Shader::SetUniform(const char* uniformName, int count, const int* value)
+	{
+		glUniform1iv(glGetUniformLocation(m_ShaderHandle, uniformName), count, value);
+	}
+
 	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Vec3 value)
 	{
 		glUniform3f(glGetUniformLocation(m_ShaderHandle, uniformName), value.x, value.y, value.z);

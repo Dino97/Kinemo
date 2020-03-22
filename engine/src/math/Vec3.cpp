@@ -93,6 +93,11 @@ namespace Kinemo { namespace Math {
 		return left.Divide(right);
 	}
 
+	Vec3 Vec3::operator-() const
+	{
+		return Vec3(-x, -y, -z);
+	}
+
 	Vec3& Vec3::operator+=(const Vec3& other)
 	{
 		x += other.x;
