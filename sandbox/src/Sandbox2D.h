@@ -17,5 +17,4 @@ private:
 
 	Shader *shader;
 	Texture2D *texture1, *texture2;
-	Sprite *background;
 };

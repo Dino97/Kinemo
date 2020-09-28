@@ -7,6 +7,8 @@ namespace Kinemo
     class OrthographicCameraController
     {
     public:
+        OrthographicCameraController(Camera camera) : m_Camera(camera) {}
+
         void Update(float dt);
 
         inline Camera& GetCamera() { return m_Camera; }
