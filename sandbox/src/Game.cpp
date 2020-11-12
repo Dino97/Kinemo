@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Kinemo.h"
 
-#include "Player.h"
 #include "Sandbox2D.h"
 
 using namespace Kinemo;

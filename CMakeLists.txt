@@ -1,4 +1,11 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.13)
+
+option(KINEMO_BUILD_EXAMPLES OFF)
+
 
 add_subdirectory(engine)
-add_subdirectory(sandbox)
+
+if(KINEMO_BUILD_EXAMPLES)
+	message("-- Building examples")
+	add_subdirectory(sandbox)
+endif()
