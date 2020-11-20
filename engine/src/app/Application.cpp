@@ -31,10 +31,6 @@ namespace Kinemo
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 
-	Application::~Application() 
-	{
-	}
-
 	void Application::OnEvent(Events::Event& event)
 	{
 		Events::EventDispatcher dispatcher(event);
@@ -48,24 +44,20 @@ namespace Kinemo
 		return true;
 	}
 
-	void Application::OnInit()
+	void Application::InternalInit()
 	{
-		Log::Init(); // TO-DO: init on start of the program
+		Log::Init();
+		Renderer2D::Init();
+
 		KM_CORE_INFO("Kinemo Engine initialised!");
 		KM_CORE_INFO("Graphics: {0}", glGetString(GL_RENDERER));
 		KM_CORE_INFO("Version: {0}", glGetString(GL_VERSION));
 	}
 
-	void Application::OnUpdate(float deltaTime)
+	void Application::InternalUpdate(float deltaTime)
 	{
 		for (Layer* layer : m_LayerStack)
 			layer->OnUpdate(deltaTime);
-	}
-
-	void Application::OnRender() 
-	{
-		//for (Layer* layer : m_LayerStack)
-		//	layer->OnRender();
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -80,9 +72,7 @@ namespace Kinemo
 
 	void Application::Start()
 	{
-		using namespace Kinemo;
-		using namespace Math;
-
+		InternalInit();
 		OnInit();
 
 		Timer time;
@@ -98,18 +88,16 @@ namespace Kinemo
 
 			m_Window->Clear();
 
+			InternalUpdate(deltaTime);
 			OnUpdate(deltaTime);
 
-			for (Kinemo::GameObject* go : m_GameObjects)
-				go->Update(deltaTime);
-			
 			m_Window->Update();
 
 			if (time.Elapsed() - timer > 1.0f)
 			{
 				timer += 1.0f;
 				std::cout << (int)(1 / deltaTime) << " fps" << std::endl;
-				Log::GetCoreLogger()->info("Quads: {0}, draw calls: {1}", Renderer2D::GetStats().quads, Renderer2D::GetStats().drawCalls);
+				KM_CORE_INFO("Quads: {0}, draw calls: {1}", Renderer2D::GetStats().quads, Renderer2D::GetStats().drawCalls);
 			}
 		}
 	}
