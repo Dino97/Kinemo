@@ -7,60 +7,32 @@
 
 namespace Kinemo
 {
+	static void CompileShader(uint32_t shader, const std::string& source);
+
+	template<typename ...Shaders>
+	static void LinkProgram(uint32_t program, Shaders... shaders);
+
 	Shader::Shader(const char* vertexPath, const char* fragmentPath)
 	{
-		std::string vertSrcString = FileUtilities::ReadFile(vertexPath);
-		std::string fragSrcString = FileUtilities::ReadFile(fragmentPath);
+		std::string vertexSource = FileUtilities::ReadFile(vertexPath);
+		std::string fragmentSource = FileUtilities::ReadFile(fragmentPath);
 
-		const char* vertexShaderSource = vertSrcString.c_str();
-		const char* fragmentShaderSource = fragSrcString.c_str();
+		uint32_t vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		uint32_t fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-		// VERTEX SHADER
-		unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
-		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-		glCompileShader(vertexShader);
-
-		// check for shader compile errors
-		int success;
-		char infoLog[512];
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-		if (!success)
-		{
-			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-		}
-
-		// FRAGMENT SHADER
-		unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-		glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-		glCompileShader(fragmentShader);
-
-		// check for shader compile errors
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-		if (!success)
-		{
-			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-		}
+		CompileShader(vertexShader, vertexSource);
+		CompileShader(fragmentShader, fragmentSource);
 
 		m_Handle = glCreateProgram();
-
-		glAttachShader(m_Handle, vertexShader);
-		glAttachShader(m_Handle, fragmentShader);
-		glLinkProgram(m_Handle);
-
-		// CHECK FOR LINK ERRORS
-		glGetShaderiv(m_Handle, GL_LINK_STATUS, &success);
-		if (!success)
-		{
-			glGetProgramInfoLog(m_Handle, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-		}
+		LinkProgram(m_Handle, vertexShader, fragmentShader);
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
+	}
+
+	Shader::~Shader()
+	{
+		glDeleteProgram(m_Handle);
 	}
 
 	void Shader::Bind() const
@@ -91,5 +63,41 @@ namespace Kinemo
 	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Mat4 mat4)
 	{
 		glUniformMatrix4fv(glGetUniformLocation(m_Handle, uniformName), 1, GL_FALSE, mat4.elements);
+	}
+
+	// *** Helper functions ***
+	static void CompileShader(uint32_t shader, const std::string& source)
+	{
+		const char* shaderSource = source.c_str();
+		int success;
+		char infoLog[512];
+
+		glShaderSource(shader, 1, &shaderSource, 0);
+		glCompileShader(shader);
+
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(shader, 512, 0, infoLog);
+			std::cerr << "ERROR::SHADER_COMPILATION_FAILED\n" << infoLog << std::endl;
+		}
+	}
+
+	template<typename ...Shaders>
+	static void LinkProgram(uint32_t program, Shaders... shaders)
+	{
+		int success;
+		char infoLog[512];
+
+		int dummy[sizeof...(Shaders)] = { (glAttachShader(program, shaders), 0)... };
+		glLinkProgram(program);
+
+		// Check for linking errors
+		glGetShaderiv(program, GL_LINK_STATUS, &success);
+		if (!success)
+		{
+			glGetProgramInfoLog(program, 512, NULL, infoLog);
+			std::cerr << "ERROR::SHADER_LINKING_FAILED\n" << infoLog << std::endl;
+		}
 	}
 }

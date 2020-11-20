@@ -25,6 +25,11 @@ namespace Kinemo
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
+	Texture2D::~Texture2D()
+	{
+		glDeleteTextures(1, &m_Handle);
+	}
+
 	void Texture2D::Bind() const
 	{
 		glBindTexture(GL_TEXTURE_2D, m_Handle);
