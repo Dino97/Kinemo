@@ -26,8 +26,8 @@ void Sandbox2D::OnAttach()
 	
 	shader->SetUniform("textures", 32, samplers);
 
-	texture1 = Texture2D::CreateFromFile("resources/textures/BG.png");
-	texture2 = Texture2D::CreateFromFile("resources/textures/Dirt01.png");
+	texture1 = new Texture2D("resources/textures/BG.png");
+	texture2 = new Texture2D("resources/textures/Dirt01.png");
 
 	Renderer2D::Init();
 }
@@ -49,9 +49,9 @@ void Sandbox2D::OnUpdate(float deltaTime)
 		for (int j = 0; j < 720 / textureSize; j++)
 		{
 			if (i == j)
-				Renderer2D::DrawQuad({textureSize * i, textureSize * j, 0.0f}, {textureSize, textureSize}, *((GLTexture2D*)texture1));
+				Renderer2D::DrawQuad({textureSize * i, textureSize * j, 0.0f}, {textureSize, textureSize}, *texture1);
 			else
-				Renderer2D::DrawQuad({textureSize * i, textureSize * j, 0.0f}, {textureSize, textureSize}, *((GLTexture2D*)texture2));
+				Renderer2D::DrawQuad({textureSize * i, textureSize * j, 0.0f}, {textureSize, textureSize}, *texture2);
 		}
 	}
 

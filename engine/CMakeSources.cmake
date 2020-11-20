@@ -24,7 +24,6 @@ set(KINEMO_MATH_SRC
 )
 
 set(KINEMO_OPENGL_SRC
-    "src/platform/opengl/GLTexture2D.cpp"
     "src/platform/windows/WindowsInput.cpp"
     "src/platform/windows/WindowsWindow.cpp"
 )

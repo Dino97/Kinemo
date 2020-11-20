@@ -1,24 +1,47 @@
 #include "Texture2D.h"
 
 #include <glad/glad.h>
-#include "platform/opengl/GLTexture2D.h"
+#include "utils/stb_image.h"
 
 namespace Kinemo
 {
-	void Texture2D::SetMinFilter(Filter minFilter) const
+	Texture2D::Texture2D(const char* path)
 	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
+		unsigned char* data = stbi_load(path, &m_Width, &m_Height, &m_Channels, 0);
+
+		glGenTextures(1, &m_Handle);
+		glBindTexture(GL_TEXTURE_2D, m_Handle);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		stbi_image_free(data);
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	void Texture2D::SetMagFilter(Filter magFilter) const
+	void Texture2D::Bind() const
 	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, magFilter);
+		glBindTexture(GL_TEXTURE_2D, m_Handle);
 	}
 
-	Texture2D* Texture2D::CreateFromFile(const char* path)
+	void Texture2D::Unbind() const
 	{
-		GLTexture2D* result = new GLTexture2D(path);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
 
-		return result;
+	void Texture2D::MinFilter(Filter minFilter) const
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (GLint)minFilter);
+	}
+
+	void Texture2D::MagFilter(Filter magFilter) const
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (GLint)magFilter);
 	}
 }

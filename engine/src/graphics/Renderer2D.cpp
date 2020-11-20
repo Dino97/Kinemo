@@ -185,7 +185,7 @@ namespace Kinemo
 		s_Data.stats.quads++;
 	}
 
-	void Renderer2D::DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const GLTexture2D& texture)
+	void Renderer2D::DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const Texture2D& texture)
 	{
 		if (s_Data.indexCount >= MaxIndexCount)
 		{

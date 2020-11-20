@@ -2,7 +2,7 @@
 
 namespace Kinemo
 {
-	enum Filter
+	enum class Filter
 	{
 		NEAREST = 0x2600,
 		LINEAR
@@ -11,18 +11,27 @@ namespace Kinemo
 	class Texture2D
 	{
 	public:
-		virtual void Bind() const = 0;
-		virtual void Unbind() const = 0;
+		Texture2D(const char* path);
+		~Texture2D();
 
-		void SetMinFilter(Filter minFilter) const;
-		void SetMagFilter(Filter magFilter) const;
+		Texture2D(const Texture2D&) = delete;
+		Texture2D& operator=(const Texture2D&) = delete;
 
-		inline int GetWidth() const { return m_Width; }
-		inline int GetHeight() const { return m_Height; }
+		Texture2D(Texture2D&&) = default;
+		Texture2D& operator=(Texture2D&) = default;
 
-		static Texture2D* CreateFromFile(const char* path);
+		virtual void Bind() const;
+		virtual void Unbind() const;
+
+		void MinFilter(Filter minFilter) const;
+		void MagFilter(Filter magFilter) const;
+
+		inline int Width() const { return m_Width; }
+		inline int Height() const { return m_Height; }
+		inline unsigned int GetHandle() const { return m_Handle; }
 		
-	protected:
+	private:
 		int m_Width, m_Height, m_Channels;
+		unsigned int m_Handle;
 	};
 }
