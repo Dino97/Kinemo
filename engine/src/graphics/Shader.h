@@ -3,12 +3,18 @@
 #include "graphics/Shader.h"
 #include "math/Mat4.h"
 
-namespace Kinemo {
-
+namespace Kinemo 
+{
 	class Shader
 	{
 	public:
 		Shader(const char* vertexPath, const char* fragmentPath);
+
+		Shader(const Shader&) = delete;
+		Shader& operator=(const Shader&) = delete;
+
+		Shader(Shader&&) = default;
+		Shader& operator=(Shader&&) = default;
 
 		void Bind() const;
 		void Unbind() const;
@@ -19,6 +25,6 @@ namespace Kinemo {
 		void SetUniform(const char* uniformName, Kinemo::Math::Mat4 mat4);
 
 	private:
-		unsigned int m_ShaderHandle;
+		unsigned int m_Handle;
 	};
 }

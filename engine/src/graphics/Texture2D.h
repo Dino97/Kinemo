@@ -18,7 +18,7 @@ namespace Kinemo
 		Texture2D& operator=(const Texture2D&) = delete;
 
 		Texture2D(Texture2D&&) = default;
-		Texture2D& operator=(Texture2D&) = default;
+		Texture2D& operator=(Texture2D&&) = default;
 
 		virtual void Bind() const;
 		virtual void Unbind() const;

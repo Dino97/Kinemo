@@ -45,17 +45,17 @@ namespace Kinemo
 			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
 		}
 
-		m_ShaderHandle = glCreateProgram();
+		m_Handle = glCreateProgram();
 
-		glAttachShader(m_ShaderHandle, vertexShader);
-		glAttachShader(m_ShaderHandle, fragmentShader);
-		glLinkProgram(m_ShaderHandle);
+		glAttachShader(m_Handle, vertexShader);
+		glAttachShader(m_Handle, fragmentShader);
+		glLinkProgram(m_Handle);
 
 		// CHECK FOR LINK ERRORS
-		glGetShaderiv(m_ShaderHandle, GL_LINK_STATUS, &success);
+		glGetShaderiv(m_Handle, GL_LINK_STATUS, &success);
 		if (!success)
 		{
-			glGetProgramInfoLog(m_ShaderHandle, 512, NULL, infoLog);
+			glGetProgramInfoLog(m_Handle, 512, NULL, infoLog);
 			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 		}
 
@@ -65,7 +65,7 @@ namespace Kinemo
 
 	void Shader::Bind() const
 	{
-		glUseProgram(m_ShaderHandle);
+		glUseProgram(m_Handle);
 	}
 
 	void Shader::Unbind() const
@@ -75,21 +75,21 @@ namespace Kinemo
 
 	void Shader::SetUniform(const char* uniformName, int value)
 	{
-		glUniform1i(glGetUniformLocation(m_ShaderHandle, uniformName), value);
+		glUniform1i(glGetUniformLocation(m_Handle, uniformName), value);
 	}
 
 	void Shader::SetUniform(const char* uniformName, int count, const int* value)
 	{
-		glUniform1iv(glGetUniformLocation(m_ShaderHandle, uniformName), count, value);
+		glUniform1iv(glGetUniformLocation(m_Handle, uniformName), count, value);
 	}
 
 	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Vec3 value)
 	{
-		glUniform3f(glGetUniformLocation(m_ShaderHandle, uniformName), value.x, value.y, value.z);
+		glUniform3f(glGetUniformLocation(m_Handle, uniformName), value.x, value.y, value.z);
 	}
 
 	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Mat4 mat4)
 	{
-		glUniformMatrix4fv(glGetUniformLocation(m_ShaderHandle, uniformName), 1, GL_FALSE, mat4.elements);
+		glUniformMatrix4fv(glGetUniformLocation(m_Handle, uniformName), 1, GL_FALSE, mat4.elements);
 	}
 }
