@@ -2,10 +2,10 @@
 
 namespace Kinemo
 {
-	enum class Filter
+	enum class TextureFilter
 	{
-		NEAREST = 0x2600,
-		LINEAR
+		Nearest,
+		Linear
 	};
 
 	class Texture2D
@@ -20,11 +20,10 @@ namespace Kinemo
 		Texture2D(Texture2D&&) = default;
 		Texture2D& operator=(Texture2D&&) = default;
 
-		virtual void Bind() const;
-		virtual void Unbind() const;
+		void Bind() const;
+		void Unbind() const;
 
-		void MinFilter(Filter minFilter) const;
-		void MagFilter(Filter magFilter) const;
+		void SetFilter(TextureFilter filter) const;
 
 		inline int Width() const { return m_Width; }
 		inline int Height() const { return m_Height; }

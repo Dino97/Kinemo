@@ -28,6 +28,8 @@ namespace Kinemo
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
+		float GetTime();
+
 	private:
 		void InternalInit();
 		void InternalUpdate(float deltaTime);

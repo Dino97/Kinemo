@@ -33,6 +33,7 @@ namespace Kinemo
 			{
 				unsigned int quads;
 				unsigned int drawCalls;
+				unsigned int textureUnits;
 			};
 
 			static const Stats& GetStats();

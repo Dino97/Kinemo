@@ -25,7 +25,7 @@ namespace Kinemo
 		Vertex* vertexBuffer;
 		Vertex* vertexBufferPosition;
 
-		GLuint whiteTexture;
+		GLuint defaultTexture;
 
 		std::array<GLuint, MaxTextures> textureSlots;
 		uint32_t nextTextureSlot = 1;
@@ -85,23 +85,18 @@ namespace Kinemo
 
 		glBindVertexArray(0);
 
-		glGenTextures(1, &s_Data.whiteTexture);
-		glBindTexture(GL_TEXTURE_2D, s_Data.whiteTexture);
+		glGenTextures(1, &s_Data.defaultTexture);
+		glBindTexture(GL_TEXTURE_2D, s_Data.defaultTexture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		uint32_t color = 0xFFFFFFFF;
+		uint32_t color = 0xFFFF00FF;
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1, 1, 0, GL_RGB, GL_UNSIGNED_BYTE, &color);
 		
-		s_Data.textureSlots[0] = s_Data.whiteTexture;
+		s_Data.textureSlots[0] = s_Data.defaultTexture;
 		memset(&s_Data.textureSlots[0] + 1, 0, (s_Data.textureSlots.size() - 1) * sizeof(GLuint));
-
-		int MaxTextureImageUnits;
-		glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &MaxTextureImageUnits);
-
-		KM_CORE_INFO("Max texture units: {0}", MaxTextureImageUnits);
 	}
 
 	void Renderer2D::Shutdown()
@@ -110,7 +105,7 @@ namespace Kinemo
 		glDeleteBuffers(1, &s_Data.vbo);
 		glDeleteBuffers(1, &s_Data.ibo);
 
-		glDeleteTextures(1, &s_Data.whiteTexture);
+		glDeleteTextures(1, &s_Data.defaultTexture);
 
 		delete[] s_Data.vertexBuffer;
 	}
@@ -200,7 +195,7 @@ namespace Kinemo
 		{
 			if (s_Data.textureSlots[i] == handle)
 			{
-				textureId = handle;
+				textureId = i;
 				break;
 			}
 		}
@@ -244,6 +239,7 @@ namespace Kinemo
 
 		s_Data.indexCount += 6;
 		s_Data.stats.quads++;
+		s_Data.stats.textureUnits = s_Data.nextTextureSlot;
 	}
 
 	const Renderer2D::Stats& Renderer2D::GetStats()

@@ -70,6 +70,11 @@ namespace Kinemo
 		m_LayerStack.PushOverlay(layer);
 	}
 
+	float Application::GetTime()
+	{
+		return m_Timer.Elapsed();
+	}
+
 	void Application::Start()
 	{
 		InternalInit();
@@ -97,7 +102,7 @@ namespace Kinemo
 			{
 				timer += 1.0f;
 				std::cout << (int)(1 / deltaTime) << " fps" << std::endl;
-				KM_CORE_INFO("Quads: {0}, draw calls: {1}", Renderer2D::GetStats().quads, Renderer2D::GetStats().drawCalls);
+				KM_CORE_INFO("Quads: {0}, draw calls: {1}, texture units: {2}", Renderer2D::GetStats().quads, Renderer2D::GetStats().drawCalls, Renderer2D::GetStats().textureUnits);
 			}
 		}
 	}
