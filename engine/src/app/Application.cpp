@@ -1,21 +1,16 @@
 #include "Application.h"
 
-#include "utils/Timer.h"
 #include "math/Mat4.h"
 #include "math/Vec2.h"
 #include "graphics/Texture2D.h"
 #include "graphics/Shader.h"
 #include "utils/Log.h"
+#include "utils/Timer.h"
 
 #include "graphics/Renderer2D.h"
 
-#include <iostream>
-#include <map>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
-#include "ft2build.h"
-#include FT_FREETYPE_H
 
 namespace Kinemo
 {
@@ -27,7 +22,13 @@ namespace Kinemo
 	{
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		WindowProperties windowProperties;
+		windowProperties.Title = title;
+		windowProperties.Width = width;
+		windowProperties.Height = height;
+		windowProperties.Mode = fullscreen ? WindowMode::Fullscreen : WindowMode::Windowed;
+
+		m_Window = std::unique_ptr<Window>(new Window(windowProperties));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 

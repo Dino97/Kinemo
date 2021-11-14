@@ -5,6 +5,8 @@
 #include <string>
 #include <functional>
 
+struct GLFWwindow;
+
 namespace Kinemo
 {
 	enum class WindowMode
@@ -33,27 +35,32 @@ namespace Kinemo
 
 	class Window
 	{
+	public:
+		Window(const WindowProperties& properties = WindowProperties());
+		~Window();
+
+		void Clear() const;
+		void Update() const;
+
+		void SetVSync(bool vsync);
+		bool IsClosing() const;
+		void SetTitle(const std::string& title);
+
+		inline GLFWwindow* GetNativeWindow() const { return m_Window; }
+
+		using EventCallbackFn = std::function<void(Events::Event&)>;
+		void SetEventCallback(const EventCallbackFn& callback);
+
+		struct WindowData
+		{
+			EventCallbackFn EventCallback;
+		};
+
 	protected:
 		WindowProperties m_WindowProperties;
+		GLFWwindow* m_Window;
+		WindowData m_Data;
+		EventCallbackFn EventCallback;
 		double m_CursorX, m_CursorY;
-
-	public:
-		using EventCallbackFn = std::function<void(Events::Event&)>;
-
-		virtual ~Window() {}
-
-		virtual void Clear() const = 0;
-		virtual void Update() const = 0;
-
-		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
-		virtual void SetVSync(bool vsync) = 0;
-		virtual bool IsClosing() const = 0;
-
-		virtual void SetTitle(const std::string& title) = 0;
-
-		virtual void* GetNativeWindow() const = 0;
-
-		static Window* Create(const WindowProperties& properties = WindowProperties());
-
-	}; // class Window
-} // namespace Kinemo
+	};
+}

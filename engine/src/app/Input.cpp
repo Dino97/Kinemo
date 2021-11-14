@@ -1,13 +1,13 @@
-#include "WindowsInput.h"
+#include "Input.h"
 #include "app/Application.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Kinemo
 {
-	Input* Input::s_Instance = new WindowsInput();
+	Input* Input::s_Instance = new Input();
 
-	bool WindowsInput::IsKeyDownImpl(int keycode) const
+	bool Input::IsKeyDownImpl(int keycode) const
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		int state = glfwGetKey(window, keycode);
@@ -15,7 +15,7 @@ namespace Kinemo
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::IsMouseButtonDownImpl(int button) const
+	bool Input::IsMouseButtonDownImpl(int button) const
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		int state = glfwGetMouseButton(window, button);
@@ -23,7 +23,7 @@ namespace Kinemo
 		return state == GLFW_PRESS;
 	}
 
-	float WindowsInput::GetMouseXImpl() const
+	float Input::GetMouseXImpl() const
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -33,7 +33,7 @@ namespace Kinemo
 		return static_cast<float>(xPos);
 	}
 
-	float WindowsInput::GetMouseYImpl() const
+	float Input::GetMouseYImpl() const
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 

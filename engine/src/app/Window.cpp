@@ -1,27 +1,18 @@
-#include "WindowsWindow.h"
-
+#include "Window.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 namespace Kinemo
 {
-	WindowsWindow::WindowsWindow(const WindowProperties& properties)
+	Window::Window(const WindowProperties& properties)
 	{
-		Init(properties);
-	}
-
-	void WindowsWindow::Init(const WindowProperties& properties)
-	{
-		m_Data.Title = properties.Title;
-		m_Data.m_Width = properties.Width;
-		m_Data.m_Height = properties.Height;
-
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		m_Window = glfwCreateWindow(m_Data.m_Width, m_Data.m_Height, m_Data.Title.c_str(), nullptr, nullptr);
+		GLFWmonitor* monitor = properties.Mode == WindowMode::Windowed ? nullptr : glfwGetPrimaryMonitor();
+		m_Window = glfwCreateWindow(properties.Width, properties.Height, properties.Title.c_str(), monitor, nullptr);
 		glfwMakeContextCurrent(m_Window);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -82,39 +73,39 @@ namespace Kinemo
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	Window* Window::Create(const WindowProperties& properties)
+	Window::~Window()
 	{
-		return new WindowsWindow(properties);
+		glfwDestroyWindow(m_Window);
 	}
 	
-	void WindowsWindow::Clear() const
+	void Window::Clear() const
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // dark gray
 	}
 	
-	void WindowsWindow::Update() const
+	void Window::Update() const
 	{
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
-	void WindowsWindow::SetEventCallback(const EventCallbackFn& callback)
+	void Window::SetEventCallback(const EventCallbackFn& callback)
 	{
 		m_Data.EventCallback = callback;
 	}
 
-	void WindowsWindow::SetVSync(bool vsync)
+	void Window::SetVSync(bool vsync)
 	{
 		glfwSwapInterval(vsync ? 1 : 0);
 	}
 
-	bool WindowsWindow::IsClosing() const
+	bool Window::IsClosing() const
 	{
 		return glfwWindowShouldClose(m_Window);
 	}
 
-	void WindowsWindow::SetTitle(const std::string& title)
+	void Window::SetTitle(const std::string& title)
 	{
 		m_WindowProperties.Title = title;
 

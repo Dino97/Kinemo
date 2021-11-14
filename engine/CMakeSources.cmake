@@ -1,5 +1,7 @@
 set(KINEMO_APP_SRC
     "src/app/Application.cpp"
+    "src/app/Window.cpp"
+    "src/app/Input.cpp"
 )
 
 set(KINEMO_GRAPHICS_SRC
@@ -17,11 +19,6 @@ set(KINEMO_MATH_SRC
     "src/math/Mat4.cpp"
     "src/math/Vec2.cpp"
     "src/math/Vec3.cpp"
-)
-
-set(KINEMO_OPENGL_SRC
-    "src/platform/windows/WindowsInput.cpp"
-    "src/platform/windows/WindowsWindow.cpp"
 )
 
 set(KINEMO_SYSTEM_SRC
@@ -46,7 +43,6 @@ set(KINEMO_SRC
     ${KINEMO_APP_SRC}
     ${KINEMO_GRAPHICS_SRC}
     ${KINEMO_MATH_SRC}
-    ${KINEMO_OPENGL_SRC}
     ${KINEMO_SYSTEM_SRC}
     ${KINEMO_UTILITIES_SRC}
     ${KINEMO_NOFILTER_SRC}

@@ -10,11 +10,11 @@ namespace Kinemo
 		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); };
 		inline static float GetMouseY() { return s_Instance->GetMouseYImpl(); };
 
-	protected:
-		virtual bool IsKeyDownImpl(int keycode) const = 0;
-		virtual bool IsMouseButtonDownImpl(int button) const = 0;
-		virtual float GetMouseXImpl() const = 0;
-		virtual float GetMouseYImpl() const = 0;
+	private:
+		bool IsKeyDownImpl(int keycode) const;
+		bool IsMouseButtonDownImpl(int button) const;
+		float GetMouseXImpl() const;
+		float GetMouseYImpl() const;
 
 	private:
 		static Input* s_Instance;
