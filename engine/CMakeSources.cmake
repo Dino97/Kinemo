@@ -3,14 +3,10 @@ set(KINEMO_APP_SRC
 )
 
 set(KINEMO_GRAPHICS_SRC
-    "src/graphics/Grid.cpp"
     "src/graphics/Shader.cpp"
     "src/graphics/Sprite.cpp"
     "src/graphics/Texture2D.cpp"
     "src/graphics/Renderer2D.cpp"
-    
-    "src/graphics/gui/Texture.cpp"
-    
     "src/graphics/layers/Layer.cpp"
     "src/graphics/layers/Layer2D.cpp"
     "src/graphics/layers/LayerStack.cpp"
@@ -34,7 +30,6 @@ set(KINEMO_SYSTEM_SRC
 
 set(KINEMO_UTILITIES_SRC
     "src/utils/Log.cpp"
-    "src/utils/stb_image.cpp"
     "src/utils/Timer.cpp"
 )
 

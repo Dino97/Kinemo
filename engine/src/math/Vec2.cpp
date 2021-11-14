@@ -26,17 +26,13 @@ namespace Kinemo { namespace Math {
 
 	Vec2 Vec2::Lerp(const Vec2& vec1, const Vec2& vec2, float alpha)
 	{
-		Vec2 result;
+		Vec2 res
+		{
+			(1 - alpha) * vec1.x + alpha * vec2.x,
+			(1 - alpha) * vec1.y + alpha * vec2.y
+		};
 
-		if (alpha > 1)
-			alpha = 1;
-		else if (alpha < 0)
-			alpha = 0;
-
-		result.x = vec1.x * (1 - alpha) + vec2.x * alpha;
-		result.y = vec1.y * (1 - alpha) + vec2.y * alpha;
-
-		return result;
+		return res;
 	}
 
 	float Vec2::Distance(const Vec2& vec1, const Vec2& vec2)

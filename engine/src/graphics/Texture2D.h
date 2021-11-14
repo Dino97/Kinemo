@@ -12,6 +12,7 @@ namespace Kinemo
 	{
 	public:
 		Texture2D(const char* path);
+		Texture2D(int width, int height, int channels, unsigned char* data);
 		~Texture2D();
 
 		Texture2D(const Texture2D&) = delete;

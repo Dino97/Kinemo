@@ -50,17 +50,18 @@ namespace Kinemo
 		glUniform1i(glGetUniformLocation(m_Handle, uniformName), value);
 	}
 
+	// used for loading samplers
 	void Shader::SetUniform(const char* uniformName, int count, const int* value)
 	{
 		glUniform1iv(glGetUniformLocation(m_Handle, uniformName), count, value);
 	}
 
-	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Vec3 value)
+	void Shader::SetUniform(const char* uniformName, const Math::Vec3& value)
 	{
 		glUniform3f(glGetUniformLocation(m_Handle, uniformName), value.x, value.y, value.z);
 	}
 
-	void Shader::SetUniform(const char* uniformName, Kinemo::Math::Mat4 mat4)
+	void Shader::SetUniform(const char* uniformName, const Math::Mat4& mat4)
 	{
 		glUniformMatrix4fv(glGetUniformLocation(m_Handle, uniformName), 1, GL_FALSE, mat4.elements);
 	}

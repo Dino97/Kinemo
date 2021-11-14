@@ -101,8 +101,8 @@ namespace Kinemo
 			if (time.Elapsed() - timer > 1.0f)
 			{
 				timer += 1.0f;
-				std::cout << (int)(1 / deltaTime) << " fps" << std::endl;
-				KM_CORE_INFO("Quads: {0}, draw calls: {1}, texture units: {2}", Renderer2D::GetStats().quads, Renderer2D::GetStats().drawCalls, Renderer2D::GetStats().textureUnits);
+				KM_CORE_INFO("{0} FPS", (int)(1 / deltaTime));
+				KM_CORE_INFO("Renderer: {0} quads, {1} draw calls, {2} texture units", Renderer2D::GetStats().quads, Renderer2D::GetStats().drawCalls, Renderer2D::GetStats().textureUnits);
 			}
 		}
 	}

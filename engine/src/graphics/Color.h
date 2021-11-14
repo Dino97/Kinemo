@@ -5,20 +5,19 @@ namespace Kinemo
 	class Color
 	{
 	public:
-		float r, g, b;
+		float r, g, b, a;
 
-		Color(float red, float green, float blue) :
+		Color(float red, float green, float blue, float alpha = 1.0f) :
 			r(red),
 			g(green),
-			b(blue)
+			b(blue),
+			a(alpha)
 		{}
 
 		static const Color Red;
 		static const Color Green;
 		static const Color Blue;
+		static const Color White;
+		static const Color Black;
 	};
-
-	const Color Color::Red		= Color(1.0f, 0.0f, 0.0f);
-	const Color Color::Green	= Color(0.0f, 1.0f, 0.0f);
-	const Color Color::Blue		= Color(0.0f, 0.0f, 1.0f);
 }
