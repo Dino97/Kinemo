@@ -67,7 +67,7 @@ namespace Kinemo
 		uint16_t indices[MaxIndexCount];
 		uint16_t offset = 0;
 
-		for (int i = 0; i < MaxIndexCount; i += 6)
+		for (unsigned int i = 0; i < MaxIndexCount; i += 6)
 		{
 			indices[i + 0] = 0 + offset;
 			indices[i + 1] = 1 + offset;
