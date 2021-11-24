@@ -5,10 +5,12 @@ set(KINEMO_APP_SRC
 )
 
 set(KINEMO_GRAPHICS_SRC
+    "src/graphics/Color.cpp"
+    "src/graphics/Framebuffer.cpp"
+    "src/graphics/Renderer2D.cpp"
     "src/graphics/Shader.cpp"
     "src/graphics/Sprite.cpp"
     "src/graphics/Texture2D.cpp"
-    "src/graphics/Renderer2D.cpp"
     "src/graphics/layers/Layer.cpp"
     "src/graphics/layers/Layer2D.cpp"
     "src/graphics/layers/LayerStack.cpp"
