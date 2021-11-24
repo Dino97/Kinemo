@@ -94,7 +94,7 @@ namespace Kinemo
 		glLinkProgram(program);
 
 		// Check for linking errors
-		glGetShaderiv(program, GL_LINK_STATUS, &success);
+		glGetProgramiv(program, GL_LINK_STATUS, &success);
 		if (!success)
 		{
 			glGetProgramInfoLog(program, 512, NULL, infoLog);
