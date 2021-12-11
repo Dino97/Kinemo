@@ -92,7 +92,7 @@ namespace Kinemo
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		uint32_t color = 0xFFFF00FF;
+		uint32_t color = 0xFFFFFFFF;
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1, 1, 0, GL_RGB, GL_UNSIGNED_BYTE, &color);
 		
 		s_Data.textureSlots[0] = s_Data.defaultTexture;
@@ -112,6 +112,8 @@ namespace Kinemo
 
 	void Renderer2D::Begin()
 	{
+		s_Data.indexCount = 0;
+		s_Data.nextTextureSlot = 1;
 		s_Data.vertexBufferPosition = s_Data.vertexBuffer;
 	}
 
@@ -126,7 +128,6 @@ namespace Kinemo
 		glBindVertexArray(s_Data.vao);
 		glDrawElements(GL_TRIANGLES, s_Data.indexCount, GL_UNSIGNED_SHORT, nullptr);
 
-		s_Data.indexCount = 0;
 		s_Data.stats.drawCalls++;
 	}
 	
@@ -202,7 +203,7 @@ namespace Kinemo
 
 		if (textureId == 0.0f)
 		{
-			textureId = handle;
+			textureId = s_Data.nextTextureSlot;
 			s_Data.textureSlots[s_Data.nextTextureSlot] = handle;
 			s_Data.nextTextureSlot++;
 		}
@@ -239,7 +240,6 @@ namespace Kinemo
 
 		s_Data.indexCount += 6;
 		s_Data.stats.quads++;
-		s_Data.stats.textureUnits = s_Data.nextTextureSlot;
 	}
 
 	const Renderer2D::Stats& Renderer2D::GetStats()
