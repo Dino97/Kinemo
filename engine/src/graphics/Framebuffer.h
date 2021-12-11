@@ -3,6 +3,8 @@
 #include "Texture2D.h"
 #include "Color.h"
 
+#include <memory>
+
 namespace Kinemo
 {
     class Framebuffer
@@ -26,9 +28,13 @@ namespace Kinemo
         void CreateColorBuffer();
         void CreateDepthStencilBuffer();
 
+        const std::unique_ptr<Texture2D>& GetColorBuffer() const { return m_ColorBuffer; }
+        //const std::unique_ptr<Texture2D>& GetDepthStencilBuffer() const { return m_ColorBuffer; } // TO-DO
+
         bool IsComplete() const;
 
     private:
+        std::unique_ptr<Texture2D> m_ColorBuffer/*, m_DepthStencilBuffer*/;
         unsigned int m_Handle;
         unsigned int m_Width, m_Height;
         int m_ClearFlags;
