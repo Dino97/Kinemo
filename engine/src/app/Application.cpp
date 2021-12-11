@@ -94,6 +94,8 @@ namespace Kinemo
 
 			m_Window->Clear();
 
+			Renderer2D::ResetStats();
+
 			InternalUpdate(deltaTime);
 			OnUpdate(deltaTime);
 

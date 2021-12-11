@@ -2,8 +2,12 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
+#include <iostream>
+
 namespace Kinemo
 {
+	void OpenGLDebugCallback(GLenum source​, GLenum type​, GLuint id​, GLenum severity​, GLsizei length​, const GLchar* message​, const void* userParam​);
+
 	Window::Window(const WindowProperties& properties)
 	{
 		glfwInit();
@@ -71,6 +75,14 @@ namespace Kinemo
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		glEnable(GL_DEBUG_OUTPUT);
+		glDebugMessageCallbackARB(OpenGLDebugCallback, nullptr);
+	}
+
+	void OpenGLDebugCallback(GLenum source​, GLenum type​, GLuint id​, GLenum severity​, GLsizei length​, const GLchar* message​, const void* userParam​)
+	{
+		std::cerr << "[OpenGL Debug]: " << message​ << std::endl;
 	}
 
 	Window::~Window()
