@@ -2,7 +2,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-#include <iostream>
+#include "utils/Log.h"
 
 namespace Kinemo
 {
@@ -82,7 +82,7 @@ namespace Kinemo
 
 	void OpenGLDebugCallback(GLenum source​, GLenum type​, GLuint id​, GLenum severity​, GLsizei length​, const GLchar* message​, const void* userParam​)
 	{
-		std::cerr << "[OpenGL Debug]: " << message​ << std::endl;
+		KM_CORE_WARNING("[OpenGL]: {0}", message​);
 	}
 
 	Window::~Window()
