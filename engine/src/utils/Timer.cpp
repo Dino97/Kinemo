@@ -25,5 +25,10 @@ float Timer::Elapsed()
 
 float Timer::ElapsedMs()
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_Members->m_Start).count();
+	return ElapsedUs() / 1000;
+}
+
+float Timer::ElapsedUs()
+{
+	return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - m_Members->m_Start).count();
 }

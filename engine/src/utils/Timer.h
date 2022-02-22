@@ -13,11 +13,14 @@ public:
 	Timer();
 
 	// Resets the timer
-	virtual void Reset();
+	void Reset();
 
 	// Elapsed time in seconds
-	virtual float Elapsed();
+	float Elapsed();
 
 	// Elapsed time in milliseconds
-	virtual float ElapsedMs();
+	float ElapsedMs();
+
+	// Elapsed time in microseconds
+	float ElapsedUs();
 };
