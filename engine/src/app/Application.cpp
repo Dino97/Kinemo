@@ -6,6 +6,7 @@
 #include "graphics/Shader.h"
 #include "utils/Log.h"
 #include "utils/Timer.h"
+#include "lua/Lua.h"
 
 #include "graphics/Renderer2D.h"
 
@@ -49,6 +50,7 @@ namespace Kinemo
 	{
 		Log::Init();
 		Renderer2D::Init();
+		Lua::Init();
 
 		KM_CORE_INFO("Kinemo Engine initialised!");
 		KM_CORE_INFO("Graphics: {0}", glGetString(GL_RENDERER));
@@ -69,11 +71,6 @@ namespace Kinemo
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverlay(layer);
-	}
-
-	float Application::GetTime()
-	{
-		return m_Timer.Elapsed();
 	}
 
 	void Application::Start()
