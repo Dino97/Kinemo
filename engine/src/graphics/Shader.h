@@ -21,6 +21,7 @@ namespace Kinemo
 		void Unbind() const;
 
 		void SetUniform(const char* uniformName, int value);
+		void SetUniform(const char* uniformName, float value);
 		void SetUniform(const char* uniformName, int count, const int* value);
 		void SetUniform(const char* uniformName, const Math::Vec3& value);
 		void SetUniform(const char* uniformName, const Math::Mat4& mat4);

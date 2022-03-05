@@ -60,6 +60,12 @@ namespace Kinemo
 		glUniform1i(glGetUniformLocation(m_Handle, uniformName), value);
 	}
 
+	void Shader::SetUniform(const char* uniformName, float value)
+	{
+		CHECK_SHADER_BINDING();
+		glUniform1f(glGetUniformLocation(m_Handle, uniformName), value);
+	}
+
 	// used for loading samplers
 	void Shader::SetUniform(const char* uniformName, int count, const int* value)
 	{
