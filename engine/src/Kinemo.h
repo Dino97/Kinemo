@@ -3,6 +3,8 @@
 #include "app/Application.h"
 #include "app/Input.h"
 
+#include "debug/Debug.h"
+
 #include "events/Event.h"
 #include "events/InputEvents.h"
 
@@ -13,6 +15,8 @@
 #include "graphics/Sprite.h"
 #include "graphics/layers/Layer.h"
 #include "graphics/layers/Layer2D.h"
+
+#include "lua/Lua.h"
 
 #include "Camera.h"
 #include "OrthographicCameraController.h"

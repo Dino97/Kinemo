@@ -18,6 +18,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
         dependencies/glad/include
         dependencies/FreeType/include
+        dependencies/lua/include
 )
 
 # TO-DO: why spdlog must be public?
@@ -27,4 +28,5 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
         glfw
         stb_image
+        ${PROJECT_SOURCE_DIR}/dependencies/lua/liblua54.a
 )

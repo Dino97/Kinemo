@@ -16,6 +16,10 @@ set(KINEMO_GRAPHICS_SRC
     "src/graphics/layers/LayerStack.cpp"
 )
 
+set(KINEMO_LUA_SRC
+    "src/lua/Lua.cpp"
+)
+
 set(KINEMO_MATH_SRC
     "src/math/Mat2.cpp"
     "src/math/Mat4.cpp"
@@ -43,7 +47,9 @@ set(KINEMO_DEPENDENCIES_SRC
 
 set(KINEMO_SRC
     ${KINEMO_APP_SRC}
+    "src/debug/Debug.cpp"
     ${KINEMO_GRAPHICS_SRC}
+    ${KINEMO_LUA_SRC}
     ${KINEMO_MATH_SRC}
     ${KINEMO_SYSTEM_SRC}
     ${KINEMO_UTILITIES_SRC}
