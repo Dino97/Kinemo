@@ -17,7 +17,6 @@ target_include_directories(${PROJECT_NAME}
         src
     PRIVATE
         dependencies/glad/include
-        dependencies/FreeType/include
 )
 
 # TO-DO: why spdlog must be public?

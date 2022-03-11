@@ -6,7 +6,6 @@
 #include "graphics/Shader.h"
 #include "utils/Log.h"
 #include "utils/Timer.h"
-#include "lua/Lua.h"
 
 #include "graphics/Renderer2D.h"
 
@@ -50,7 +49,6 @@ namespace Kinemo
 	{
 		Log::Init();
 		Renderer2D::Init();
-		Lua::Init();
 
 		KM_CORE_INFO("Kinemo Engine initialised!");
 		KM_CORE_INFO("Graphics: {0}", glGetString(GL_RENDERER));
