@@ -13,6 +13,7 @@
 #include "graphics/Sprite.h"
 #include "graphics/layers/Layer.h"
 #include "graphics/layers/Layer2D.h"
+#include "graphics/TextRenderer.h"
 
 #include "Camera.h"
 #include "OrthographicCameraController.h"

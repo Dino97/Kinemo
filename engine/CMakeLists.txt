@@ -17,6 +17,7 @@ target_include_directories(${PROJECT_NAME}
         src
     PRIVATE
         dependencies/glad/include
+        dependencies/freetype/include
 )
 
 # TO-DO: why spdlog must be public?
@@ -26,4 +27,5 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
         glfw
         stb_image
+        ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/freetype/libfreetype.so
 )

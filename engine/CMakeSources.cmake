@@ -14,6 +14,8 @@ set(KINEMO_GRAPHICS_SRC
     "src/graphics/layers/Layer.cpp"
     "src/graphics/layers/Layer2D.cpp"
     "src/graphics/layers/LayerStack.cpp"
+    "src/graphics/TextRenderer.cpp"
+    "src/graphics/Font.cpp"
 )
 
 set(KINEMO_MATH_SRC
