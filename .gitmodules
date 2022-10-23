@@ -4,3 +4,6 @@
 [submodule "engine/dependencies/glfw"]
 	path = engine/dependencies/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "engine/dependencies/box2d"]
+	path = engine/dependencies/box2d
+	url = https://github.com/erincatto/box2d.git
