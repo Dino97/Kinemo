@@ -7,15 +7,48 @@ namespace Kinemo
 {
 	Input* Input::s_Instance = new Input();
 
-	bool Input::IsKeyDownImpl(int keycode) const
-	{
-		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		int state = glfwGetKey(window, keycode);
+	static int lastState[512] = {0};
 
-		return state == GLFW_PRESS || state == GLFW_REPEAT;
+
+	static inline GLFWwindow* GetWindow()
+	{
+		return static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 	}
 
-	bool Input::IsMouseButtonDownImpl(int button) const
+	bool Input::GetKeyImpl(int keycode)
+	{
+		int state = glfwGetKey(GetWindow(), keycode);
+
+		return state == GLFW_PRESS;
+	}
+
+	bool Input::GetKeyDownImpl(int keycode)
+	{
+		bool retVal = false;
+		int curState = glfwGetKey(GetWindow(), keycode);
+
+		if (curState == GLFW_PRESS && curState != lastState[keycode])
+			retVal = true;
+
+		lastState[keycode] = curState;
+
+		return retVal;
+	}
+
+	bool Input::GetKeyUpImpl(int keycode)
+	{
+		bool retVal = false;
+		int curState = glfwGetKey(GetWindow(), keycode);
+
+		if (curState == GLFW_RELEASE && curState != lastState[keycode])
+			retVal = true;
+
+		lastState[keycode] = curState;
+
+		return retVal;
+	}
+
+	bool Input::GetMouseButtonDownImpl(int button)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		int state = glfwGetMouseButton(window, button);
