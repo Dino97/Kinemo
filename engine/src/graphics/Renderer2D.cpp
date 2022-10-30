@@ -138,7 +138,7 @@ namespace Kinemo
 		glBufferSubData(GL_ARRAY_BUFFER, 0, bufferSize, s_Data.vertexBuffer);
 	}
 
-	void Renderer2D::DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const Math::Vec4& color)
+	void Renderer2D::DrawQuad(const Vec3& position, const Vec2& size, const Vec4& color)
 	{
 		if (s_Data.indexCount >= MaxIndexCount)
 		{
@@ -150,29 +150,29 @@ namespace Kinemo
 		float textureId = 0.0f;
 
 		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x, position.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(0.0f, 0.0f);
+		s_Data.vertexBufferPosition->position = Vec3(position.x, position.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(0.0f, 0.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;
 
 		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x + size.x, position.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(1.0f, 0.0f);
+		s_Data.vertexBufferPosition->position = Vec3(position.x + size.x, position.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(1.0f, 0.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;
 
 		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x + size.x, position.y + size.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(1.0f, 1.0f);
+		s_Data.vertexBufferPosition->position = Vec3(position.x + size.x, position.y + size.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(1.0f, 1.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;
 
 		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x, position.y + size.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(0.0f, 1.0f);
+		s_Data.vertexBufferPosition->position = Vec3(position.x, position.y + size.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(0.0f, 1.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;
@@ -181,7 +181,7 @@ namespace Kinemo
 		s_Data.stats.quads++;
 	}
 
-	void Renderer2D::DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const Texture2D& texture)
+	void Renderer2D::DrawQuad(const Vec3& position, const Vec2& size, const Texture2D& texture)
 	{
 		if (s_Data.indexCount >= MaxIndexCount)
 		{
@@ -208,32 +208,33 @@ namespace Kinemo
 			s_Data.nextTextureSlot++;
 		}
 
-		Math::Vec4 color = {1.0f, 1.0f, 1.0f, 1.0f};
+		Vec4 color = {1.0f, 1.0f, 1.0f, 1.0f};
 
 		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x, position.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(0.0f, 0.0f);
+		s_Data.vertexBufferPosition->position = Vec3(position.x, position.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(0.0f, 0.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;
 
-		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x + size.x, position.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(1.0f, 0.0f);
+
+		// Bottom right
+		s_Data.vertexBufferPosition->position = Vec3(position.x + size.x, position.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(1.0f, 0.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;
 
-		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x + size.x, position.y + size.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(1.0f, 1.0f);
+		// Top right
+		s_Data.vertexBufferPosition->position = Vec3(position.x + size.x, position.y + size.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(1.0f, 1.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;
 
-		// Bottom left
-		s_Data.vertexBufferPosition->position = Math::Vec3(position.x, position.y + size.y, position.z);
-		s_Data.vertexBufferPosition->texCoords = Math::Vec2(0.0f, 1.0f);
+		// Top left
+		s_Data.vertexBufferPosition->position = Vec3(position.x, position.y + size.y, position.z);
+		s_Data.vertexBufferPosition->texCoords = Vec2(0.0f, 1.0f);
 		s_Data.vertexBufferPosition->color = color;
 		s_Data.vertexBufferPosition->textureId = textureId;
 		s_Data.vertexBufferPosition++;

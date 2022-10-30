@@ -1,7 +1,7 @@
 #include "Mat2.h"
 
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
 	Mat2::Mat2()
 	{
 		elements[0] = 0.0f;
@@ -22,5 +22,4 @@ namespace Kinemo { namespace Math {
 	{
 		return elements[0] * elements[3] - elements[1] * elements[2];
 	}
-
-} }
+}

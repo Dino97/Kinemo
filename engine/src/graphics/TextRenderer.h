@@ -9,7 +9,7 @@ namespace Kinemo
     class TextRenderer
     {
     public:
-        static void DrawText(const Font& font, const Math::Vec3& position, const char* text);
+        static void DrawText(const Font& font, const Vec3& position, const char* text);
         
     private:
     

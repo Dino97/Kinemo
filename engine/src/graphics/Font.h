@@ -15,8 +15,8 @@ namespace Kinemo
         struct Character
         {
             uint texture;
-            Math::Vec2 size;
-            Math::Vec2 bearing;
+            Vec2 size;
+            Vec2 bearing;
             uint advance;
         };
 

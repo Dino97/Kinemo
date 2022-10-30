@@ -5,14 +5,20 @@
 #include "Mat2.h"
 #include "Mat4.h"
 
-namespace Kinemo { namespace Math {
-
-	template<class T>
-	T Clamp(const T& value, const T& min, const T& max)
+namespace Kinemo::Math
+{
+	constexpr float degToRad = M_PI / 180.0;
+	constexpr float radToDeg = 180.0 / M_PI;
+	
+	template<typename T>
+	constexpr T Clamp(const T& value, const T& min, const T& max)
 	{
 		return std::max(min, std::min(value, max));
 	}
 
-	constexpr double DegToRad = M_PI / 180.0;
-	constexpr double RadToDeg = 180.0 / M_PI;
-}}
+	template<typename T>
+	constexpr T Clamp01(const T& value)
+	{
+		return Clamp(value, 0, 1);
+	}
+}

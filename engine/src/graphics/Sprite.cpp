@@ -66,7 +66,7 @@ namespace Kinemo
 		: m_Position(x, y), m_Size(w, h)
 	{}
 
-	Sprite::Sprite(const Math::Vec2& position, const Math::Vec2& size)
+	Sprite::Sprite(const Vec2& position, const Vec2& size)
 		: m_Position(position), m_Size(size)
 	{}
 #endif

@@ -9,9 +9,9 @@ namespace Kinemo
 {
 	struct Vertex
 	{
-		Math::Vec3 position;
-		Math::Vec2 texCoords;
-		Math::Vec4 color;
+		Vec3 position;
+		Vec2 texCoords;
+		Vec4 color;
 		float textureId;
 	};
 
@@ -26,8 +26,11 @@ namespace Kinemo
 			static void Flush();
 			static void End();
 			
-			static void DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const Math::Vec4& color);
-			static void DrawQuad(const Math::Vec3& position, const Math::Vec2& size, const Texture2D& texture);
+			static void DrawQuad(const Vec3& position, const Vec2& size, const Vec4& color);
+			static void DrawQuad(const Vec3& position, const Vec2& size, const Texture2D& texture);
+
+			template<typename T>
+			static void Render(const T&);
 
 			struct Stats
 			{

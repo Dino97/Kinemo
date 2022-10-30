@@ -1,7 +1,7 @@
 #pragma once
 
-namespace Kinemo { namespace Math {
-	
+namespace Kinemo
+{
 	struct Mat2
 	{
 		float elements[4];
@@ -11,5 +11,4 @@ namespace Kinemo { namespace Math {
 
 		float Determinant();
 	};
-
-} }
+}

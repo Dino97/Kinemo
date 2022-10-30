@@ -2,8 +2,8 @@
 
 #include "Vec3.h"
 
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
 	struct Mat4
 	{
 		float elements[16];
@@ -24,4 +24,4 @@ namespace Kinemo { namespace Math {
 
 		Mat4& Multiply(const Mat4& other);
 	};
-}}
+}

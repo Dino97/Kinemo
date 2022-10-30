@@ -8,7 +8,7 @@
 
 namespace Kinemo
 {
-    void TextRenderer::DrawText(const Font& font, const Math::Vec3& position, const char* text)
+    void TextRenderer::DrawText(const Font& font, const Vec3& position, const char* text)
     {
         // Draw text over everything.
         glDisable(GL_DEPTH_TEST);
@@ -27,7 +27,7 @@ namespace Kinemo
         glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (const void*)0);
         glEnableVertexAttribArray(0);
 
-        Math::Vec3 pen = position;
+        Vec3 pen = position;
 
         // Draw all characters.
         int len = std::strlen(text);
