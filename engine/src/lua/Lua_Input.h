@@ -10,7 +10,7 @@
 LUA_FUNC(GetButtonDown)
 {
     int button = lua_tonumber(L, -1);
-    bool ret = Kinemo::Input::IsKeyDown(button);
+    bool ret = Kinemo::Input::GetKeyDown(button);
     lua_pushboolean(L, ret);
 
     return 1;
@@ -19,7 +19,7 @@ LUA_FUNC(GetButtonDown)
 LUA_FUNC(GetMouseButtonDown)
 {
     int button = lua_tonumber(L, -1);
-    bool ret = Kinemo::Input::IsMouseButtonDown(button);
+    bool ret = Kinemo::Input::GetMouseButtonDown(button);
     lua_pushboolean(L, ret);
 
     return 1;

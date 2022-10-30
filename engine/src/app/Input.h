@@ -5,14 +5,26 @@ namespace Kinemo
 	class Input
 	{
 	public:
-		inline static bool IsKeyDown(int keycode) { return s_Instance->IsKeyDownImpl(keycode); }
-		inline static bool IsMouseButtonDown(int button) { return s_Instance->IsMouseButtonDownImpl(button); }
+		inline static bool GetKey(int keycode) { return s_Instance->GetKeyImpl(keycode); };
+		inline static bool GetKeyDown(int keycode) { return s_Instance->GetKeyDownImpl(keycode); };
+		inline static bool GetKeyUp(int keycode) { return s_Instance->GetKeyUpImpl(keycode); };
+
+		inline static bool GetMouseButton(int button) { return s_Instance->GetMouseButtonImpl(button); }
+		inline static bool GetMouseButtonDown(int button) { return s_Instance->GetMouseButtonDownImpl(button); }
+		inline static bool GetMouseButtonUp(int button) { return s_Instance->GetMouseButtonUpImpl(button); }
+
 		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); };
 		inline static float GetMouseY() { return s_Instance->GetMouseYImpl(); };
 
 	private:
-		bool IsKeyDownImpl(int keycode) const;
-		bool IsMouseButtonDownImpl(int button) const;
+		bool GetKeyImpl(int keycode);
+		bool GetKeyDownImpl(int keycode);
+		bool GetKeyUpImpl(int keycode);
+
+		bool GetMouseButtonImpl(int button);
+		bool GetMouseButtonDownImpl(int button);
+		bool GetMouseButtonUpImpl(int button);
+
 		float GetMouseXImpl() const;
 		float GetMouseYImpl() const;
 

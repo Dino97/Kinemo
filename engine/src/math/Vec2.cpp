@@ -1,7 +1,7 @@
 #include "Vec2.h"
 
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
 	Vec2::Vec2()
 	{
 		x = 0.0f;
@@ -132,5 +132,4 @@ namespace Kinemo { namespace Math {
 		stream << "vec2:( " << vector.x << ", " << vector.y << ")";
 		return stream;
 	}
-
-}}
+}

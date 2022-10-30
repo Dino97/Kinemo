@@ -1,8 +1,8 @@
 #include "Vec3.h"
 #include <cmath>
 
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
 	Vec3::Vec3()
 	{
 		x = 0.0f;
@@ -145,5 +145,4 @@ namespace Kinemo { namespace Math {
 		stream << "vec3:( " << vector.x << ", " << vector.y << ", " << vector.z << ")";
 		return stream;
 	}
-
-}}
+}

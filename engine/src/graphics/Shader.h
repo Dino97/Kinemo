@@ -23,8 +23,8 @@ namespace Kinemo
 		void SetUniform(const char* uniformName, int value);
 		void SetUniform(const char* uniformName, float value);
 		void SetUniform(const char* uniformName, int count, const int* value);
-		void SetUniform(const char* uniformName, const Math::Vec3& value);
-		void SetUniform(const char* uniformName, const Math::Mat4& mat4);
+		void SetUniform(const char* uniformName, const Vec3& value);
+		void SetUniform(const char* uniformName, const Mat4& mat4);
 
 	private:
 		unsigned int m_Handle;

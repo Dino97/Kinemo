@@ -21,16 +21,16 @@ namespace Kinemo
 #else
 	public:
 		Sprite(float x, float y, float w, float h);
-		Sprite(const Math::Vec2& position, const Math::Vec2& size);
+		Sprite(const Vec2& position, const Vec2& size);
 
-		const Math::Vec2& GetPosition() const { return m_Position; };
-		const Math::Vec2& GetSize() const { return m_Size; };
+		const Vec2& GetPosition() const { return m_Position; };
+		const Vec2& GetSize() const { return m_Size; };
 
 		void SetPosition(float x, float y) { m_Position.x = x; m_Position.y = y;}
 
 	private:
-		Math::Vec2 m_Position;
-		Math::Vec2 m_Size;
+		Vec2 m_Position;
+		Vec2 m_Size;
 #endif
 	};
 }

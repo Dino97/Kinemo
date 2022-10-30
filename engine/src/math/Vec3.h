@@ -2,8 +2,8 @@
 
 #include <ostream>
 
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
 	struct Vec2;
 
 	struct Vec3
@@ -44,5 +44,4 @@ namespace Kinemo { namespace Math {
 
 		friend std::ostream& operator<<(std::ostream& stream, const Vec3& vector);
 	};
-
-}}
+}

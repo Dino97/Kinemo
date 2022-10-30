@@ -53,7 +53,7 @@ namespace Kinemo
     {
         CHECK_FRAMEBUFFER_BINDING();
 
-        m_ColorBuffer = std::make_unique<Texture2D>(m_Width, m_Height, 3, nullptr);
+        m_ColorBuffer = std::make_unique<Texture2D>(m_Width, m_Height, Texture2D::Channels::RGB, nullptr);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 

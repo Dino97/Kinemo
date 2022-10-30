@@ -3,8 +3,8 @@
 #include <ostream>
 #include <cmath>
 
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
 	struct Vec2
 	{
 		float x, y;
@@ -40,5 +40,4 @@ namespace Kinemo { namespace Math {
 
 		friend std::ostream& operator<<(std::ostream& stream, const Vec2& vector);
 	};
-
-}}
+}

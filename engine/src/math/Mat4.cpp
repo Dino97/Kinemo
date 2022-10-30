@@ -5,8 +5,8 @@
 #include <cmath>
 #include <cstring>
 
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
 	Mat4::Mat4()
 	{
 		for (int i = 0; i < 16; i++)
@@ -136,4 +136,4 @@ namespace Kinemo { namespace Math {
 
 		return *this;
 	}
-}}
+}

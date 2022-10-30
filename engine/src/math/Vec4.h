@@ -1,10 +1,9 @@
+#pragma once
 
-
-
-namespace Kinemo { namespace Math {
-
+namespace Kinemo
+{
     struct Vec4
     {
         float x, y, z, w;
     };
-}}
+}

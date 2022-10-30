@@ -11,8 +11,19 @@ namespace Kinemo
 	class Texture2D
 	{
 	public:
+		enum class Channels
+		{
+			Red,
+			Green,
+			Blue,
+			Alpha,
+			RGB,
+			RGBA
+		};
+
+	public:
 		Texture2D(const char* path);
-		Texture2D(int width, int height, int channels, unsigned char* data);
+		Texture2D(int width, int height, Channels channels, unsigned char* data);
 		~Texture2D();
 
 		Texture2D(const Texture2D&) = delete;
@@ -31,7 +42,7 @@ namespace Kinemo
 		inline unsigned int GetHandle() const { return m_Handle; }
 		
 	private:
-		int m_Width, m_Height, m_Channels;
+		int m_Width, m_Height;
 		unsigned int m_Handle;
 	};
 }
