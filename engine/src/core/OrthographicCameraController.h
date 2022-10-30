@@ -1,5 +1,5 @@
 #pragma once
-#include "Camera.h"
+#include "core/Camera.h"
 #include "math/Vec3.h"
 
 namespace Kinemo
@@ -17,7 +17,7 @@ namespace Kinemo
     private:
         Camera m_Camera;
 
-        Math::Vec3 m_CameraPos;
+        Vec3 m_CameraPos;
 	    float cameraSpeed = 500.0f;
     };
 }
