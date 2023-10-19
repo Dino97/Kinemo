@@ -1,4 +1,5 @@
 #include "Vec3.h"
+#include "Vec2.h"
 #include <cmath>
 
 namespace Kinemo
@@ -15,6 +16,13 @@ namespace Kinemo
 		this->x = x;
 		this->y = y;
 		this->z = z;
+	}
+
+	Vec3::Vec3(const Vec2& other)
+	{
+		x = other.x;
+		y = other.y;
+		z = 0.0f;
 	}
 
 	Vec3 Vec3::Lerp(const Vec3& vec1, const Vec3& vec2, float alpha)

@@ -6,8 +6,6 @@
 #include "core/Camera.h"
 #include "core/OrthographicCameraController.h"
 
-#include "debug/Debug.h"
-
 #include "events/Event.h"
 #include "events/InputEvents.h"
 

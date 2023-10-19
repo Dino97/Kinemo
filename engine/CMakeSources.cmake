@@ -25,6 +25,10 @@ set(KINEMO_GRAPHICS_SRC
 
 set(KINEMO_LUA_SRC
     "src/lua/Lua.cpp"
+    "src/lua/LuaInput.cpp"
+    "src/lua/LuaPhysics.cpp"
+    "src/lua/LuaRenderer2D.cpp"
+    "src/lua/LuaTexture2D.cpp"
 )
 
 set(KINEMO_MATH_SRC
@@ -54,7 +58,6 @@ set(KINEMO_DEPENDENCIES_SRC
 set(KINEMO_SRC
     ${KINEMO_APP_SRC}
     ${KINEMO_CORE_SRC}
-    "src/debug/Debug.cpp"
     ${KINEMO_GRAPHICS_SRC}
     ${KINEMO_LUA_SRC}
     ${KINEMO_MATH_SRC}

@@ -1,9 +1,6 @@
 #include "Lua.h"
 
 #include "Lua_EntityManager.h"
-#include "Lua_Input.h"
-#include "Lua_Renderer2D.h"
-#include "Lua_Texture2D.h"
 #include "utils/Log.h"
 
 #include <lua.hpp>
@@ -61,7 +58,7 @@ namespace Kinemo
         s_Data.kinemoTableIndex = luaL_ref(L, LUA_REGISTRYINDEX);
     }
 
-    void Lua::Init()
+    void Init()
     {
         s_Data.L = luaL_newstate();
         luaL_openlibs(s_Data.L);
@@ -71,12 +68,9 @@ namespace Kinemo
         lua_register(s_Data.L, "RegisterComponentUpdate", Lua_RegisterComponentUpdate);
 
         RegisterEntityManager(s_Data.L, new EntityManager());
-        RegisterInput(s_Data.L);
-        RegisterRenderer2D(s_Data.L);
-        RegisterTexture2D(s_Data.L);
     }
 
-    void Lua::RunScript(const char* path)
+    void RunScript(const char* path)
     {
         /*luaL_loadfile(s_Data.L, path);
         lua_pushstring(s_Data.L, path);
@@ -91,7 +85,7 @@ namespace Kinemo
         }
     }
 
-    void Lua::Update(float dt)
+    void Update(float dt)
     {
         lua_State* L = s_Data.L;
 

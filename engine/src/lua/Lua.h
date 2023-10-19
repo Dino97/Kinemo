@@ -1,12 +1,14 @@
 #pragma once
 
-namespace Kinemo
+#include <lua.hpp>
+
+#define LUA_FUNC(func) int func(lua_State* L)
+
+namespace Lua
 {
-    class Lua
+    class LuaModule
     {
     public:
-        static void Init();
-        static void RunScript(const char* path);
-        static void Update(float dt);
+        virtual void Register(lua_State* L) = 0;
     };
 }
