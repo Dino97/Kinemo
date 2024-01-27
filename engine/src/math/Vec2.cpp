@@ -129,7 +129,7 @@ namespace Kinemo
 
 	std::ostream& operator<<(std::ostream& stream, const Vec2& vector)
 	{
-		stream << "vec2:( " << vector.x << ", " << vector.y << ")";
+		stream << vector.x << ", " << vector.y;
 		return stream;
 	}
 }

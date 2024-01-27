@@ -23,6 +23,7 @@
 #include "math/Math.h"
 
 #include "physics/BoundingBox.h"
+#include "physics/Physics.h"
 
 #include "system/VirtualFileSystem.h"
 

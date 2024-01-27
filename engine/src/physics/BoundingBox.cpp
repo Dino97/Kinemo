@@ -2,6 +2,8 @@
 
 #include "math/Vec2.h"
 
+#include <iostream>
+
 namespace Kinemo
 {
     BoundingBox::BoundingBox() :
@@ -47,10 +49,10 @@ namespace Kinemo
         m_Center += centerOffset;
     }
 
-    void BoundingBox::Include(const BoundingBox& box)
+    void BoundingBox::Include(const BoundingBox& other)
     {
-        Include(box.GetMin());
-        Include(box.GetMax());
+        Include(other.GetMin());
+        Include(other.GetMax());
     }
 
     bool BoundingBox::Raycast(const Vec2& origin, const Vec2& direction) const
@@ -58,5 +60,36 @@ namespace Kinemo
         bool retVal = false;
 
         return retVal;
+    }
+
+    bool BoundingBox::Intersects(const BoundingBox& other) const
+    {
+        // Distance is < 0 if boxes intersect on specific axis.
+        const auto distanceLeft   = (m_Center.x - m_Extents.x) - (other.m_Center.x + other.m_Extents.x);
+        const auto distanceRight  = (other.m_Center.x - other.m_Extents.x) - (m_Center.x + m_Extents.x);
+        const auto distanceBottom = (m_Center.y - m_Extents.y) - (other.m_Center.y + other.m_Extents.y);
+        const auto distanceTop    = (other.m_Center.y - other.m_Extents.y) - (m_Center.y + m_Extents.y);
+
+        if(distanceLeft <= 0)
+        {
+            if(distanceTop <= 0 || distanceBottom <= 0)
+            {
+                return true;
+            }
+        }
+        else if(distanceRight <= 0)
+        {
+            if(distanceTop <= 0 || distanceBottom <= 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+	std::ostream& operator<<(std::ostream& stream, const BoundingBox& other)
+    {
+        std::cout << "Center: " << other.m_Center << std::endl << "Extents: " << other.m_Extents << std::endl;
     }
 }

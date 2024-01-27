@@ -1,6 +1,10 @@
 #include "LuaPhysics.h"
 
+#include "physics/Physics.h"
+
 #include <iostream>
+
+using namespace Kinemo;
 
 namespace Lua
 {
@@ -18,20 +22,13 @@ namespace Lua
         lua_rawget(L, -2);
         y = lua_tonumber(L, -1);
 
+        lua_pop(L, 1);
+
         std::cout << x << ", " << y << std::endl;
+        
+        BoundingBox box = {{x, y}, {50, 50}};
 
-        if(y > 0)
-        {
-            lua_pushboolean(L, false);
-            std::cout << "false" << std::endl;
-        }
-        else
-        {
-            lua_pushboolean(L, true);
-            std::cout << "true" << std::endl;
-        }
-
-        return 1;
+        return Physics::CheckBox(box);
     }
 
     LUA_FUNC(New)

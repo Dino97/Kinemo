@@ -40,6 +40,7 @@ set(KINEMO_MATH_SRC
 
 set(KINEMO_PHYSICS_SRC
     "src/physics/BoundingBox.cpp"
+    "src/physics/Physics.cpp"
 )
 
 set(KINEMO_SYSTEM_SRC
