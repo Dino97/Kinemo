@@ -1,6 +1,5 @@
 #include "Lua.h"
 
-#include "Lua_EntityManager.h"
 #include "utils/Log.h"
 
 #include <lua.hpp>
@@ -66,8 +65,6 @@ namespace Kinemo
         CreateKinemoTable(s_Data.L);
         
         lua_register(s_Data.L, "RegisterComponentUpdate", Lua_RegisterComponentUpdate);
-
-        RegisterEntityManager(s_Data.L, new EntityManager());
     }
 
     void RunScript(const char* path)

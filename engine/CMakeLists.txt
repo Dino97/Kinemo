@@ -16,6 +16,16 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC
         src
     PRIVATE
+        src/app
+        src/core
+        src/events
+        src/graphics
+        src/lua
+        src/math
+        src/physics
+        src/system
+        src/utils
+    PRIVATE
         dependencies/freetype/include
         dependencies/glad/include
         dependencies/FreeType/include
