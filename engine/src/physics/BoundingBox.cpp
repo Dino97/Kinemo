@@ -64,32 +64,18 @@ namespace Kinemo
 
     bool BoundingBox::Intersects(const BoundingBox& other) const
     {
-        // Distance is < 0 if boxes intersect on specific axis.
-        const auto distanceLeft   = (m_Center.x - m_Extents.x) - (other.m_Center.x + other.m_Extents.x);
-        const auto distanceRight  = (other.m_Center.x - other.m_Extents.x) - (m_Center.x + m_Extents.x);
-        const auto distanceBottom = (m_Center.y - m_Extents.y) - (other.m_Center.y + other.m_Extents.y);
-        const auto distanceTop    = (other.m_Center.y - other.m_Extents.y) - (m_Center.y + m_Extents.y);
+        bool collisionX = m_Center.x + m_Extents.x >= other.m_Center.x - other.m_Extents.x &&
+            other.m_Center.x + other.m_Extents.x >= m_Center.x - m_Extents.x;
+        bool collisionY = m_Center.y + m_Extents.y >= other.m_Center.y - other.m_Extents.y &&
+            other.m_Center.y + other.m_Extents.y >= m_Center.y - m_Extents.y;
 
-        if(distanceLeft <= 0)
-        {
-            if(distanceTop <= 0 || distanceBottom <= 0)
-            {
-                return true;
-            }
-        }
-        else if(distanceRight <= 0)
-        {
-            if(distanceTop <= 0 || distanceBottom <= 0)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return collisionX && collisionY;
     }
 
 	std::ostream& operator<<(std::ostream& stream, const BoundingBox& other)
     {
-        std::cout << "Center: " << other.m_Center << std::endl << "Extents: " << other.m_Extents << std::endl;
+        stream << "Center: " << other.m_Center << ", " << "Extents: " << other.m_Extents;
+
+        return stream;
     }
 }

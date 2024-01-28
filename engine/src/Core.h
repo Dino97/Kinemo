@@ -1,6 +1,16 @@
 #pragma once
 
+/* Includes */
+/*============================================================*/
+
 #include <cstdint>
+
+
+/* Defines and types */
+/*============================================================*/
+
+#define BEGIN_NAMESPACE_KINEMO namespace Kinemo {
+#define END_NAMESPACE_KINEMO }
 
 using int8   = int8_t;
 using int16  = int16_t;

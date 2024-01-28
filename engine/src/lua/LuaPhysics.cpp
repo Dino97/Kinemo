@@ -10,25 +10,40 @@ namespace Lua
 {
     LUA_FUNC(CheckBox)
     {
-        double x, y;
+        float xPos, yPos, xExtents, yExtents;
 
         lua_pushstring(L, "x");
         lua_rawget(L, -2);
-        x = lua_tonumber(L, -1);
+        xExtents = static_cast<float>(lua_tonumber(L, -1));
 
         lua_pop(L, 1);
+
 
         lua_pushstring(L, "y");
         lua_rawget(L, -2);
-        y = lua_tonumber(L, -1);
+        yExtents = static_cast<float>(lua_tonumber(L, -1));
+
+        lua_pop(L, 2);
+
+
+        lua_pushstring(L, "x");
+        lua_rawget(L, -2);
+        xPos = static_cast<float>(lua_tonumber(L, -1));
 
         lua_pop(L, 1);
 
-        std::cout << x << ", " << y << std::endl;
-        
-        BoundingBox box = {{x, y}, {50, 50}};
 
-        return Physics::CheckBox(box);
+        lua_pushstring(L, "y");
+        lua_rawget(L, -2);
+        yPos = static_cast<float>(lua_tonumber(L, -1));
+
+        lua_pop(L, 1);
+
+        
+        BoundingBox box = {{xPos, yPos}, {xExtents, yExtents}};
+        lua_pushboolean(L, Physics::CheckBox(box));
+
+        return 1;
     }
 
     LUA_FUNC(New)

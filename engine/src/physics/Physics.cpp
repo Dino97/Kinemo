@@ -10,14 +10,8 @@ namespace Kinemo
     {
         for(const auto& bb : s_PhysicsWorld.m_Colliders)
         {
-            if(box.GetCenter().y <= 0)
-            {
-                return true;
-            }
             if(bb.Intersects(box))
-            {
-                //return true;
-            }
+                return true;
         }
 
         return false;
